@@ -29,5 +29,65 @@
 				</div>
 			</xpath>
 		</template>
+
+		<template id="ext_external_layout_boxed" inherit_id="web.external_layout_boxed">
+			<xpath expr="//img" position="replace">
+				<t t-if="o and o.template_type == 'teleprince'">
+					<img t-if="company.teleprince_logo" t-att-src="image_data_uri(company.teleprince_logo)"
+					     style="max-height: 100px;"
+					     alt="Logo"/>
+				</t>
+				<t t-elif="o and o.template_type == 'teleprince_b_and_o'">
+					<img t-if="company.b_and_o_logo" t-att-src="image_data_uri(company.b_and_o_logo)"
+					     style="max-height: 100px;"
+					     alt="Logo"/>
+				</t>
+				<t t-else="">
+					<img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 100px;"
+					     alt="Logo"/>
+				</t>
+			</xpath>
+			<xpath expr="//div[hasclass('o_boxed_header')]" position="attributes">
+				<attribute name="class">""</attribute>
+			</xpath>
+		</template>
+
+		<template id="ext_external_layout_bold" inherit_id="web.external_layout_bold">
+			<xpath expr="//img" position="replace">
+				<t t-if="o and o.template_type == 'teleprince'">
+					<img t-if="company.teleprince_logo" t-att-src="image_data_uri(company.teleprince_logo)"
+					     style="max-height: 100px;"
+					     alt="Logo"/>
+				</t>
+				<t t-elif="o and o.template_type == 'teleprince_b_and_o'">
+					<img t-if="company.b_and_o_logo" t-att-src="image_data_uri(company.b_and_o_logo)"
+					     style="max-height: 100px;"
+					     alt="Logo"/>
+				</t>
+				<t t-else="">
+					<img t-if="company.logo" t-att-src="image_data_uri(company.logo)"  style="max-height: 100px;"
+					     alt="Logo"/>
+				</t>
+			</xpath>
+		</template>
+
+		<template id="ext_external_layout_striped" inherit_id="web.external_layout_striped">
+			<xpath expr="//img" position="replace">
+				<t t-if="o and o.template_type == 'teleprince'">
+					<img t-if="company.teleprince_logo" t-att-src="image_data_uri(company.teleprince_logo)"
+					     style="max-height: 100px;" class="float-start"
+					     alt="Logo"/>
+				</t>
+				<t t-elif="o and o.template_type == 'teleprince_b_and_o'">
+					<img t-if="company.b_and_o_logo" t-att-src="image_data_uri(company.b_and_o_logo)"
+					     style="max-height: 100px;" class="float-start"
+					     alt="Logo"/>
+				</t>
+				<t t-else="">
+					<img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-start" style="max-height: 100px;"
+					     alt="Logo"/>
+				</t>
+			</xpath>
+		</template>
 	</data>
 </odoo>
