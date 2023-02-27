@@ -7,9 +7,11 @@
     'license': 'LGPL-3',
     'depends': ['base', 'account', 'web', 'base_setup'],
     'data': [
+        'security/security.xml',
         'views/account_move_views.xml',
         'views/res_company_views.xml',
         'views/res_config_views.xml',
         'views/templates.xml',
+        'views/product.xml',
     ],
 }
