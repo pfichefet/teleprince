@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="view_sale_order_inherit_account_templates_hide_margins" model="ir.ui.view">
+            <field name="name">sale.order.hide.margins.account.templates</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='margin']" position="attributes">
+                    <attribute name="groups">account_templates.group_hide_product_cost</attribute>
+                </xpath>
+	            <xpath expr="//field[@name='margin']/parent::div" position="attributes">
+                    <attribute name="groups">account_templates.group_hide_product_cost</attribute>
+	            </xpath>
+            </field>
+        </record>
+
+	    <record id="view_sale_order_line_inherit_account_templates_hide_margins" model="ir.ui.view">
+            <field name="name">sale.order.line.hide.margins.account.templates</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form"/>
+            <field name="arch" type="xml">
+                <field name="margin" position="attributes">
+                    <attribute name="groups">account_templates.group_hide_product_cost</attribute>
+                </field>
+	            <field name="margin_percent" position="attributes">
+                    <attribute name="groups">account_templates.group_hide_product_cost</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
