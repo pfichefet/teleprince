@@ -2,7 +2,7 @@
 <odoo>
 	<data noupdate="1">
 		<record id="group_hide_product_cost" model="res.groups">
-			<field name="name">Show Cost On Product</field>
+			<field name="name">Show Cost &amp; Margin On Product</field>
 			<field name="category_id" ref="base.module_category_hidden"/>
 		</record>
 	</data>
