@@ -65,7 +65,7 @@
 					     alt="Logo"/>
 				</t>
 				<t t-else="">
-					<img t-if="company.logo" t-att-src="image_data_uri(company.logo)"  style="max-height: 100px;"
+					<img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 100px;"
 					     alt="Logo"/>
 				</t>
 			</xpath>
