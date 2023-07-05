@@ -14,5 +14,6 @@
         'views/res_config_views.xml',
         'views/templates.xml',
         'views/product.xml',
+        'reports/invoice_doc.xml',
     ],
 }
