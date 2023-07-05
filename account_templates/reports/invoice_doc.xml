@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_inherit_qr_code" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='qrcode']" position="replace"/>
+        <xpath expr="//div[@name='comment']" position="before">
+            <div id="qrcode" t-if="o.display_qr_code and o.amount_residual &gt; 0">
+                <t t-set="qr_code_url" t-value="o._generate_qr_code(silent_errors=True)"/>
+                <p t-if="qr_code_url">
+                    <strong class="text-center">Scan me with your banking app.</strong>
+                    <br/>
+                    <br/>
+                    <img class="border border-dark rounded" t-att-src="qr_code_url"/>
+                </p>
+            </div>
+        </xpath>
+    </template>
+</odoo>
