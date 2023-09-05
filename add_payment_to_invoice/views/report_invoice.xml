@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[hasclass('mt-5')]//div[@id='qrcode']" position="before">
+                <div>
+                    <p>Payment Method:
+                        <t t-esc="','.join(o.pos_order_ids.mapped('payment_ids.payment_method_id.name'))"/>
+                    </p>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
