@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Remove Powered By Odoo",
+	'name': "Remove Powered By Odoo",
 
-    'summary': """
+	'summary': """
    """,
-    'category': 'mail',
-    'version': '16.0.1.0.0',
+	'category': 'mail',
+	'version': '16.0.1.0.0',
 
-    'depends': ['mail'],
+	'depends': ['mail','sale'],
 
-    'data': [
-    ],
-    'license': 'LGPL-3',
+	'data': [
+		'views/sale_order_line.xml'
+	],
+	'license': 'LGPL-3',
 }
