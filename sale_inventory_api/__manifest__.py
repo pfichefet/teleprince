@@ -5,15 +5,15 @@
     'summary': """
    """,
     'category': 'Sale',
-    'version': '16.0.0.0.0',
+    'version': '16.0.1.0.0',
 
-    # any module necessary for this one to work correctly
-    'depends': ['stock', 'sale_management', 'account_accountant'],
+    'depends': ['base', 'sale', 'sale_stock', 'stock'],
 
     'data': [
-        # 'security/ir.model.access.csv',
         'data/cron.xml',
         'views/sale.xml',
+        'views/res_company.xml',
+        'views/stock_quant.xml',
     ],
     'license': 'LGPL-3',
 }

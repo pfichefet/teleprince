@@ -2,61 +2,39 @@
 
 import requests
 from odoo import models, fields, api, _
+from odoo.addons.sale_inventory_api.API.post_sale_inventory import PostSaleInventory
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+	_inherit = 'sale.order'
 
-    api_triggered = fields.Boolean(string="Api Triggered")
+	api_triggered = fields.Boolean(string="BO Api Triggered", default=False)
 
-    # def send_api_data(self):
-    #     print("cron send api data")
-    #
-    #
-
-    def prepare_sale_data(self):
-        sale_data = {}
-        # sale_data = {'storeId': 20929,
-        #              'productNo': product.barcode,
-        #              'lineQuantity': sale_order_line.product_uom_qty,
-        #              'salesDate': str(self.date_order),
-        #              'salesReference': self.name,
-        #              'lineNo': self.order_line.id,
-        #              'productDescription': product.name,
-        #              'serialNumber': 'not required',
-        #              'storeName': self.company.name,
-        #              }
-        # sale_data_list = []
-        # for rec in self:
-        #     sale_data_list.append()
-
-        return [{'storeId': 20929,
-                 'productNo': 120,
-                 'lineQuantity': 120,
-                 'salesDate': str(self.date_order),
-                 'salesReference': 'Sale Ref',
-                 'lineNo': 4545,
-                 'productDescription': 'Product Disc',
-                 'serialNumber': 1234,
-                 'storeName': 'My Store',
-                 }]
-
-    @api.model
-    def post_sale_data(self):
-        url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Sale"
-        headers = {
-            "Content-Type": "application/json",
-        }
-
-        try:
-            response = requests.post(
-                url,
-                json=self.env['sale.order'].search([], limit=1).prepare_sale_data(),
-                headers=headers,
-                auth=("thana@teleprince.be", "Teleprince1")
-            )
-            response.raise_for_status()  # Raise an exception for 4xx and 5xx status codes
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Error occurred: {e}")
-            return None
+	@api.model
+	def post_sale_order_data(self):
+		"""
+		Post Sale order data which has the invoices and once the sale confirmed
+		:return:
+		"""
+		sale_line_list = []
+		sale_order_ids = self.search([('state', '=', 'sale'), ('invoice_ids', '!=', []), ('api_triggered', '=', False)])
+		for sale_line in sale_order_ids.mapped('order_line'):
+			order_id = sale_line.order_id
+			year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
+			sale_line_list.append({
+				'storeId': self.env.company.b_and_o_store_id,
+				'productNo': sale_line.product_id.id,
+				'lineQuantity': sale_line.product_uom_qty,
+				'salesDate': f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
+				'salesReference': order_id.name,
+				'lineNo': sale_line.id,
+				'productDescription': sale_line.product_id.name,
+				'storeName': order_id.company_id.name,
+			})
+			if not order_id.api_triggered:
+				order_id.api_triggered = True
+		if sale_line_list:
+			post_sale_inventory_api = PostSaleInventory(self.env.company.b_and_o_api_key, self.env.company.b_and_o_api_environment)
+			return post_sale_inventory_api.post_sale_data(sale_line_list)
+		else:
+			return True
