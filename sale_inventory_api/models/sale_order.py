@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
 		:return:
 		"""
 		sale_line_list = []
-		sale_order_ids = self.search([('state', '=', 'sale'), ('invoice_ids', '!=', []), ('api_triggered', '=', False)])
+		sale_order_ids = self.search([('state', '=', 'sale'), ('invoice_ids', '!=', []), ('api_triggered', '=', False),('date_order','!=',False)])
 		for sale_line in sale_order_ids.mapped('order_line'):
 			order_id = sale_line.order_id
 			year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]

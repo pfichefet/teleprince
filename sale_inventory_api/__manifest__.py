@@ -5,7 +5,7 @@
     'summary': """
    """,
     'category': 'Sale',
-    'version': '16.0.1.0.0',
+    'version': '16.0.1.0.1',
 
     'depends': ['base', 'sale', 'sale_stock', 'stock'],
 
