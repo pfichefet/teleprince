@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
 		"""
 		sale_line_list = []
 		sale_order_ids = self.search([('state', '=', 'sale'), ('invoice_ids', '!=', []), ('api_triggered', '=', False),('date_order','!=',False)])
-		for sale_line in sale_order_ids.mapped('order_line'):
+		for sale_line in sale_order_ids.mapped('order_line').filtered('product_id'):
 			order_id = sale_line.order_id
 			year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 			sale_line_list.append({
