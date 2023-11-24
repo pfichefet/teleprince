@@ -54,10 +54,12 @@ class PostSaleInventory:
             )
             if response.status_code == 201:
                 return True
+            elif response.status_code == 500:
+                raise UserError(f"Request could not be completed, error cause: API {response.reason}")
             else:
                 raise UserError(f"Request could not be completed, error cause: {response.json()}")
         except Exception as e:
-            raise UserError(f"Received Exception while calling api: {e} {payload}")
+            raise UserError(f"Received Exception while calling api: {e}")
 
     def post_inventory_data(self, payload):
         """
