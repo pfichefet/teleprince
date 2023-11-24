@@ -54,6 +54,8 @@ class PostSaleInventory:
             )
             if response.status_code == 201:
                 return True
+            elif response.status_code == 500:
+                raise UserError(f"Request could not be completed, error cause: API {response.reason}")
             else:
                 raise UserError(f"Request could not be completed, error cause: {response.json()}")
         except Exception as e:
