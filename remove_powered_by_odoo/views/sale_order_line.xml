@@ -6,11 +6,9 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-<!--                <field name="price_subtotal" position="before">-->
                     <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="before">
                         <field name="line_taxed_total"/>
                     </xpath>
-<!--                </field>-->
             </field>
         </record>
     </data>
