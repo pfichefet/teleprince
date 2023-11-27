@@ -3,6 +3,8 @@ import json
 import datetime
 import time
 from odoo.exceptions import UserError
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class PostSaleInventory:
@@ -55,6 +57,7 @@ class PostSaleInventory:
             if response.status_code == 201:
                 return True
             elif response.status_code == 500:
+                _logger.info('payload', payload)
                 raise UserError(f"Request could not be completed, error cause: API {response.reason}")
             else:
                 raise UserError(f"Request could not be completed, error cause: {response.json()}")

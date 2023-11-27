@@ -8,6 +8,7 @@
             <field name="model_id" ref="account.model_account_move"/>
             <field name="email_from">{{ (object.invoice_user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
             <field name="email_to">{{ (object.partner_id.email_formatted or object.partner_id.email) }}</field>
+            <field name="email_cc">info@teleprince.be</field>
             <field name="subject">{{ object.company_id.name }} Invoice ({{ object.name or 'n/a' }})</field>
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px;">
