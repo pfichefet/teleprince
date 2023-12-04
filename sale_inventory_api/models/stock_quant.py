@@ -21,12 +21,12 @@ class StockQuant(models.Model):
         for quant in quant_ids.filtered('inventory_date'):
             year, month, day, hour, minute, second = quant.inventory_date.timetuple()[:6]
             quant_list.append({
-                'storeId': self.env.company.b_and_o_store_id,
-                'productNo': quant.product_id.id,
-                'onhandQuantity': quant.quantity,
-                'inventoryDate': f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
-                'productDescription': quant.product_id.name,
-                'storeName': self.env.company.name,
+                "storeId": self.env.company.b_and_o_store_id,
+                "productNo": quant.product_id.id,
+                "onhandQuantity": quant.quantity,
+                "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
+                "productDescription": quant.product_id.name,
+                "storeName": self.env.company.name,
             })
             if not quant.api_triggered:
                 quant.api_triggered = True
