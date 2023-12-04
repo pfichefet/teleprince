@@ -22,14 +22,14 @@ class SaleOrder(models.Model):
 			order_id = sale_line.order_id
 			year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 			sale_line_list.append({
-				'storeId': self.env.company.b_and_o_store_id,
-				'productNo': sale_line.product_id.id,
-				'lineQuantity': sale_line.product_uom_qty,
-				'salesDate': f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
-				'salesReference': order_id.name,
-				'lineNo': sale_line.id,
-				'productDescription': sale_line.product_id.name,
-				'storeName': order_id.company_id.name,
+				"storeId": self.env.company.b_and_o_store_id,
+				"productNo": sale_line.product_id.id,
+				"lineQuantity": sale_line.product_uom_qty,
+				"salesDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
+				"salesReference": order_id.name,
+				"lineNo": sale_line.id,
+				"productDescription": sale_line.product_id.name,
+				"storeName": order_id.company_id.name,
 			})
 			if not order_id.api_triggered:
 				order_id.api_triggered = True

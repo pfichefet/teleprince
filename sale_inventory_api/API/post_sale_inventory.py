@@ -17,8 +17,8 @@ class PostSaleInventory:
     """
     sale_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Sale"
     inventory_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Inventory"
-    sale_prod_url = "https://api.bang-olufsen.dk/posdata/v1-test/api/Sale"
-    inventory_prod_url = "https://api.bang-olufsen.dk/posdata/v1-test/api/Inventory"
+    sale_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Sale"
+    inventory_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Inventory"
 
     def __init__(self, key, environment, time_between_requests=0.6):
         """
