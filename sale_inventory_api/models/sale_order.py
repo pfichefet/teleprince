@@ -31,8 +31,8 @@ class SaleOrder(models.Model):
 				"productDescription": sale_line.product_id.name[:100],
 				"storeName": order_id.company_id.name,
 			})
-   # if not order_id.api_triggered:
-   # 	order_id.api_triggered = True
+			if not order_id.api_triggered:
+				order_id.api_triggered = True
 		if sale_line_list:
 			post_sale_inventory_api = PostSaleInventory(self.env.company.b_and_o_api_key, self.env.company.b_and_o_api_environment)
 			return post_sale_inventory_api.post_sale_data(sale_line_list)
