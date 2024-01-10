@@ -33,7 +33,7 @@ class PostSaleInventory:
         self.key = key
         self.time_between_requests = time_between_requests
 
-        #: datetime: Timestamp instantiated as NoneType
+        # : datetime: Timestamp instantiated as NoneType
         self.last_request_timestamp = None
         self.environment = environment
 
@@ -48,6 +48,7 @@ class PostSaleInventory:
             "Content-Type": "application/json",
             "Ocp-Apim-Subscription-Key": self.key,
         }
+        
         try:
             response = requests.post(
                 url,
