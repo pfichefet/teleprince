@@ -55,6 +55,7 @@ class PostSaleInventory:
                 json=payload,
                 headers=headers,
             )
+            print ("response.status_code sale data", response.status_code)
             if response.status_code == 201:
                 return True
             elif response.status_code == 500:
@@ -83,6 +84,7 @@ class PostSaleInventory:
             json=payload,
             headers=headers,
         )
+        print ("response.status_code Inventory", response.status_code)
         if response.status_code == 201:
             return True
         else:
