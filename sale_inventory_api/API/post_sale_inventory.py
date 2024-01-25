@@ -56,6 +56,7 @@ class PostSaleInventory:
                 headers=headers,
             )
             print ("response.status_code sale data", response.status_code)
+            print ("\n")
             if response.status_code == 201:
                 return True
             elif response.status_code == 500:
