@@ -19,12 +19,12 @@ class SaleOrder(models.Model):
 		company_ids = self.env['res.company'].search([('b_and_o_store_id','!=',False)])
 		for company_rec in company_ids:
 			sale_line_list = []
-			sale_order_ids = self.search([('state', 'in', ['sale','lock']),
+			sale_order_ids = self.search([('state', 'in', ['sale','done']),
 										('invoice_ids', 'not in', []),
 										('api_triggered', '=', False),
 										('date_order', '!=', False),
 										('company_id','=',company_rec.id)])
-			print ("sale_order_ids", sale_order_ids)
+			print ("sale_order_ids<<<", sale_order_ids)
 			for sale_line in sale_order_ids.mapped('order_line').filtered('product_id'):
 				order_id = sale_line.order_id
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
