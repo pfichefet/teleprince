@@ -16,15 +16,15 @@ class SaleOrder(models.Model):
 		Post Sale order data which has the invoices and once the sale confirmed
 		:return:
 		"""
-		company_ids = self.env['res.company'].search([('b_and_o_store_id','!=',False)])
+		company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', False)])
+		fail_order = []
 		for company_rec in company_ids:
-			sale_line_list = []
-			sale_order_ids = self.search([('state', 'in', ['sale','done']),
+			sale_order_ids = self.search([('state', 'in', ['sale', 'done']),
 										('invoice_ids', 'not in', []),
 										('api_triggered', '=', False),
 										('date_order', '!=', False),
-										('company_id','=',company_rec.id)])
-			print ("sale_order_ids<<<", sale_order_ids)
+										('company_id', '=', company_rec.id)])
+			sale_line_list = []
 			for sale_line in sale_order_ids.mapped('order_line').filtered('product_id'):
 				order_id = sale_line.order_id
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
@@ -42,6 +42,5 @@ class SaleOrder(models.Model):
 					order_id.api_triggered = True
 			if sale_line_list:
 				post_sale_inventory_api = PostSaleInventory(company_rec.b_and_o_api_key, company_rec.b_and_o_api_environment)
-				return post_sale_inventory_api.post_sale_data(sale_line_list)
-			else:
-				return True
+				post_sale_inventory_api.post_sale_data(sale_line_list)
+		return True

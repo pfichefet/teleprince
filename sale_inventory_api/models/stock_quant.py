@@ -16,13 +16,11 @@ class StockQuant(models.Model):
         Post Quant Data
         :return: True
         """
-        company_ids = self.env['res.company'].search([('b_and_o_store_id','!=',False)])
+        company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', False)])
         for company_rec in company_ids:
             quant_list = []
             quant_ids = self.search([('inventory_quantity_set', '=', False), ('api_triggered', '=', False),
-                                     ('company_id','=',company_rec.id)])
-            print ("quant_ids>>>>>>>>>", quant_ids)
-            
+                                     ('company_id', '=', company_rec.id)])
             for quant in quant_ids.filtered('inventory_date'):
                 year, month, day, hour, minute, second = quant.inventory_date.timetuple()[:6]
                 quant_list.append({
@@ -39,6 +37,5 @@ class StockQuant(models.Model):
                 post_sale_inventory_api = PostSaleInventory(
                     company_rec.b_and_o_api_key, company_rec.b_and_o_api_environment
                 )
-                return post_sale_inventory_api.post_inventory_data(quant_list)
-            else:
-                return True
+                post_sale_inventory_api.post_inventory_data(quant_list)
+        return True
