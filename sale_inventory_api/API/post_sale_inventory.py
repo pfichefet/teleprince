@@ -55,15 +55,17 @@ class PostSaleInventory:
                 json=payload,
                 headers=headers,
             )
-            print ("response.status_code sale data", response.status_code)
-            print ("\n")
+            print ("response.status_code sale data", response.text)
+            print ("\n", response.status_code)
             if response.status_code == 201:
-                return True
+                return response
             elif response.status_code == 500:
                 _logger.info('payload', payload)
+                return response
                 raise UserError(f"Request could not be completed, error cause: API {response.reason}")
             else:
                 raise UserError(f"Request could not be completed, error cause: {response.json()}")
+            return response
         except Exception as e:
             raise UserError(f"Received Exception while calling api: {e}")
 
@@ -85,7 +87,7 @@ class PostSaleInventory:
             json=payload,
             headers=headers,
         )
-        print ("response.status_code Inventory", response.status_code)
+        print ("response.status_code Inventory>>>", response.status_code)
         if response.status_code == 201:
             return True
         else:
