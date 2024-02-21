@@ -19,10 +19,20 @@ class StockQuant(models.Model):
         company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', False)])
         for company_rec in company_ids:
             quant_list = []
-            quant_ids = self.search([('inventory_quantity_set', '=', False), ('api_triggered', '=', False),
+            quant_ids = self.search([('inventory_quantity_set', '=', False),('api_triggered', '=', False),
                                      ('company_id', '=', company_rec.id)])
             for quant in quant_ids.filtered('inventory_date'):
                 year, month, day, hour, minute, second = quant.inventory_date.timetuple()[:6]
+                inventoryStatus = 'Sellable'
+                if quant.product_id.sale_ok is False:
+                    inventoryStatus = 'Display'
+                elif quant.reserved_quantity:
+                    inventoryStatus = 'Reserved'
+                elif quant.available_quantity:
+                    inventoryStatus = 'Sellable'
+                elif quant.location_id and quant.location_id.scrap_location:
+                    inventoryStatus = 'Non-Sellable'
+                
                 quant_list.append({
                     "storeId": company_rec.b_and_o_store_id,
                     "productNo": quant.product_id.id,
@@ -30,6 +40,7 @@ class StockQuant(models.Model):
                     "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
                     "productDescription": quant.product_id.name[:100],
                     "storeName": company_rec.name,
+                    "inventoryStatus": inventoryStatus
                 })
                 if not quant.api_triggered:
                     quant.api_triggered = True
