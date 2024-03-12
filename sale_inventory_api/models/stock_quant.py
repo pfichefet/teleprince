@@ -19,7 +19,7 @@ class StockQuant(models.Model):
         company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', False)])
         for company_rec in company_ids:
             quant_list = []
-            quant_ids = self.search([('inventory_quantity_set', '=', False),('api_triggered', '=', False),
+            quant_ids = self.search([('inventory_quantity_set', '=', False),
                                      ('company_id', '=', company_rec.id)])
             for quant in quant_ids.filtered('inventory_date'):
                 year, month, day, hour, minute, second = quant.inventory_date.timetuple()[:6]
