@@ -18,9 +18,10 @@ class StockQuant(models.Model):
         :return: True
         """
         quant_list = []
-        company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', False)])
+        company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', 0)])
         print ("company_idscompany_ids", company_ids)
         for company_rec in company_ids:
+            print ("company_reccompany_reccompany_rec", company_rec.b_and_o_store_id)
             quant_ids = self.search([('inventory_quantity_set', '=', False),
                                      ('company_id', '=', company_rec.id)])
             for quant in quant_ids:
