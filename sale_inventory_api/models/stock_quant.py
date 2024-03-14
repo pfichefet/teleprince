@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 import requests
 import urllib.request, json
 from odoo.addons.sale_inventory_api.API.post_sale_inventory import PostSaleInventory
+from datetime import datetime
 
 
 class StockQuant(models.Model):
@@ -16,13 +17,14 @@ class StockQuant(models.Model):
         Post Quant Data
         :return: True
         """
+        quant_list = []
         company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', False)])
         for company_rec in company_ids:
-            quant_list = []
-            quant_ids = self.search([('inventory_quantity_set', '=', False),('api_triggered', '=', False),
+            quant_ids = self.search([('inventory_quantity_set', '=', False),
                                      ('company_id', '=', company_rec.id)])
-            for quant in quant_ids.filtered('inventory_date'):
-                year, month, day, hour, minute, second = quant.inventory_date.timetuple()[:6]
+            for quant in quant_ids:
+                today_date = datetime.today()
+                year, month, day, hour, minute, second = today_date.timetuple()[:6]
                 inventoryStatus = 'Sellable'
                 if quant.product_id.sale_ok is False:
                     inventoryStatus = 'Display'
@@ -33,17 +35,29 @@ class StockQuant(models.Model):
                 elif quant.location_id and quant.location_id.scrap_location:
                     inventoryStatus = 'Non-Sellable'
                 
-                quant_list.append({
-                    "storeId": company_rec.b_and_o_store_id,
-                    "productNo": quant.product_id.id,
-                    "onhandQuantity": quant.quantity,
-                    "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
-                    "productDescription": quant.product_id.name[:100],
-                    "storeName": company_rec.name,
-                    "inventoryStatus": inventoryStatus
-                })
+                if quant.lot_id:
+                    quant_list.append({
+                        "storeId": company_rec.b_and_o_store_id,
+                        "productNo": quant.product_id.id,
+                        "onhandQuantity": quant.quantity,
+                        "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
+                        "productDescription": quant.product_id.name[:100],
+                        "storeName": company_rec.name,
+                        "inventoryStatus": inventoryStatus,
+                        "serialNumber": quant.lot_id.name.strip()
+                    })
+                else:
+                    quant_list.append({
+                        "storeId": company_rec.b_and_o_store_id,
+                        "productNo": quant.product_id.id,
+                        "onhandQuantity": quant.quantity,
+                        "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
+                        "productDescription": quant.product_id.name[:100],
+                        "storeName": company_rec.name,
+                        "inventoryStatus": inventoryStatus,
+                    })
                 if not quant.api_triggered:
-                    quant.api_triggered = True
+                    quant.api_triggered = False
             if quant_list:
                 post_sale_inventory_api = PostSaleInventory(
                     company_rec.b_and_o_api_key, company_rec.b_and_o_api_environment
