@@ -19,7 +19,6 @@ class StockQuant(models.Model):
         """
         quant_list = []
         company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', 0)])
-        print ("company_idscompany_ids", company_ids)
         for company_rec in company_ids:
             print ("company_reccompany_reccompany_rec", company_rec.b_and_o_store_id)
             quant_ids = self.search([('inventory_quantity_set', '=', False),
@@ -41,7 +40,7 @@ class StockQuant(models.Model):
                     quant_list.append({
                         "storeId": company_rec.b_and_o_store_id,
                         "productNo": quant.product_id.id,
-                        "onhandQuantity": quant.quantity,
+                        "onhandQuantity": quant.quantity > 0 and quant.quantity or 0,
                         "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
                         "productDescription": quant.product_id.name[:100],
                         "storeName": company_rec.name,
@@ -52,7 +51,7 @@ class StockQuant(models.Model):
                     quant_list.append({
                         "storeId": company_rec.b_and_o_store_id,
                         "productNo": quant.product_id.id,
-                        "onhandQuantity": quant.quantity,
+                        "onhandQuantity": quant.quantity > 0 and quant.quantity or 0,
                         "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
                         "productDescription": quant.product_id.name[:100],
                         "storeName": company_rec.name,
