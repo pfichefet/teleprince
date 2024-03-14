@@ -19,6 +19,7 @@ class StockQuant(models.Model):
         """
         quant_list = []
         company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', False)])
+        print ("company_idscompany_ids", company_ids)
         for company_rec in company_ids:
             quant_ids = self.search([('inventory_quantity_set', '=', False),
                                      ('company_id', '=', company_rec.id)])
@@ -57,7 +58,7 @@ class StockQuant(models.Model):
                         "inventoryStatus": inventoryStatus,
                     })
                 if not quant.api_triggered:
-                    quant.api_triggered = False
+                    quant.api_triggered = True
             if quant_list:
                 post_sale_inventory_api = PostSaleInventory(
                     company_rec.b_and_o_api_key, company_rec.b_and_o_api_environment

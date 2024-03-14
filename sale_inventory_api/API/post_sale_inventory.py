@@ -21,6 +21,8 @@ class PostSaleInventory:
     inventory_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Inventory"
 
     def __init__(self, key, environment, time_between_requests=0.6):
+        print ("keyyyyyyyyyyyyyyyy", key)
+        print ("environment", environment)
         """
         Args:
             key (str): The API key issued in the Bang olufsen API.
