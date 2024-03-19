@@ -11,6 +11,7 @@ class StockQuant(models.Model):
     _inherit = "stock.quant"
 
     api_triggered = fields.Boolean(string="BO Api Triggered", default=False)
+    is_display_product = fields.Boolean(string="Dispaly Product", copy=False)
 
     def post_quant_data(self):
         """
@@ -27,7 +28,7 @@ class StockQuant(models.Model):
                 today_date = datetime.today()
                 year, month, day, hour, minute, second = today_date.timetuple()[:6]
                 inventoryStatus = 'Sellable'
-                if quant.product_id.sale_ok is False:
+                if quant.is_display_product or quant.product_id.sale_ok is False:
                     inventoryStatus = 'Display'
                 elif quant.reserved_quantity:
                     inventoryStatus = 'Reserved'
