@@ -22,8 +22,10 @@ class StockQuant(models.Model):
         company_ids = self.env['res.company'].search([('b_and_o_store_id', '!=', 0)])
         for company_rec in company_ids:
             print ("company_reccompany_reccompany_rec", company_rec.b_and_o_store_id)
-            quant_ids = self.search([('inventory_quantity_set', '=', False),
+            quants = self.search([('inventory_quantity_set', '=', False),
                                      ('company_id', '=', company_rec.id)])
+            quant_ids = quants.filtered(lambda q: q.location_id.usage in ['internal', 'transit'])
+            print ("quant_idsquant_ids=>>>>>>>>>>>>>>>", quant_ids)
             for quant in quant_ids:
                 today_date = datetime.today()
                 year, month, day, hour, minute, second = today_date.timetuple()[:6]
@@ -37,6 +39,7 @@ class StockQuant(models.Model):
                 elif quant.location_id and quant.location_id.scrap_location:
                     inventoryStatus = 'Non-Sellable'
                 
+                print ("inventoryStatusinventoryStatus", inventoryStatus)
                 if quant.lot_id:
                     quant_list.append({
                         "storeId": company_rec.b_and_o_store_id,
