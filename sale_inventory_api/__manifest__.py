@@ -6,7 +6,7 @@
    """,
     'category': 'Sale',
 
-    'version': '16.0.1.0.10',
+    'version': '16.0.1.0.11',
 
     'depends': ['base', 'sale', 'sale_stock', 'stock'],
 

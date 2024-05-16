@@ -13,6 +13,12 @@ class StockQuant(models.Model):
     api_triggered = fields.Boolean(string="BO Api Triggered", default=False)
     is_display_product = fields.Boolean(string="Dispaly Product", copy=False)
 
+    @api.model
+    def _get_inventory_fields_create(self):
+        """ Returns a list of fields user can edit when he want to create a quant in `inventory_mode`.
+        """
+        return ['product_id', 'location_id', 'lot_id', 'package_id', 'owner_id','is_display_product','api_triggered'] + self._get_inventory_fields_write()
+    
     def post_quant_data(self):
         """
         Post Quant Data
