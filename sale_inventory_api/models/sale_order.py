@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 				sale_line_list.append({
 					"storeId": order_id.company_id.b_and_o_store_id,
-					"productNo": sale_line.product_id.id,
+					"productNo": sale_line.product_id and sale_line.product_id.default_code,
 					"lineQuantity": sale_line.product_uom_qty,
 					"salesDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
 					"salesReference": order_id.name,
