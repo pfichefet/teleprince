@@ -5,7 +5,7 @@ import requests
 import urllib.request, json
 from odoo.addons.sale_inventory_api.API.post_sale_inventory import PostSaleInventory
 from datetime import datetime
-
+_logger = logging.getLogger(__name__)
 
 class StockQuant(models.Model):
     _inherit = "stock.quant"
@@ -32,6 +32,7 @@ class StockQuant(models.Model):
                                      ('company_id', '=', company_rec.id)])
             quant_ids = quants.filtered(lambda q: q.location_id.usage in ['internal', 'transit'])
             print ("quant_idsquant_ids=>>>>>>>>>>>>>>>", quant_ids)
+            _logger.info("quant_ids %s", quant_ids)
             for quant in quant_ids:
                 today_date = datetime.today()
                 year, month, day, hour, minute, second = today_date.timetuple()[:6]

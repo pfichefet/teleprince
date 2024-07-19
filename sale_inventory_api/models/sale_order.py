@@ -3,7 +3,7 @@
 import requests
 from odoo import models, fields, api, _
 from odoo.addons.sale_inventory_api.API.post_sale_inventory import PostSaleInventory
-
+_logger = logging.getLogger(__name__)
 
 class SaleOrder(models.Model):
 	_inherit = 'sale.order'
@@ -24,6 +24,7 @@ class SaleOrder(models.Model):
 										('api_triggered', '=', False),
 										('date_order', '!=', False),
 										('company_id', '=', company_rec.id)])
+			_logger.info("sale_order_ids %s", sale_order_ids)
 			sale_line_list = []
 			for sale_line in sale_order_ids.mapped('order_line').filtered('product_id'):
 				order_id = sale_line.order_id
