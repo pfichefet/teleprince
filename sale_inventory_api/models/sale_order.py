@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import logging
 import requests
 from odoo import models, fields, api, _
 from odoo.addons.sale_inventory_api.API.post_sale_inventory import PostSaleInventory

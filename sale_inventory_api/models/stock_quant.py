@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import logging
 from odoo import models, fields, api, _
 import requests
 import urllib.request, json
