@@ -47,7 +47,8 @@ class StockQuant(models.Model):
                     inventoryStatus = 'Non-Sellable'
                 
                 print ("inventoryStatusinventoryStatus", inventoryStatus)
-                _logger.info("default code %s", quant.product_id)
+                _logger.info("name %s", quant.product_id.name)
+                _logger.info("default code %s", quant.product_id.default_code)
                 if quant.lot_id:
                     quant_list.append({
                         "storeId": company_rec.b_and_o_store_id,
