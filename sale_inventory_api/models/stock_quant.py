@@ -59,6 +59,7 @@ class StockQuant(models.Model):
                         "storeName": company_rec.name,
                         "inventoryStatus": inventoryStatus,
                         "serialNumber": quant.lot_id.name.strip(),
+                        "lines":quant.ids
                     })
                 else:
                     quant_list.append({
@@ -69,6 +70,7 @@ class StockQuant(models.Model):
                         "productDescription": quant.product_id.name[:100],
                         "storeName": company_rec.name,
                         "inventoryStatus": inventoryStatus,
+                        "lines":quant.ids
                     })
                 if not quant.api_triggered:
                     quant.api_triggered = True
