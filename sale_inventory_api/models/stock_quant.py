@@ -30,7 +30,7 @@ class StockQuant(models.Model):
             print ("company_reccompany_reccompany_rec", company_rec.b_and_o_store_id)
             quants = self.search([('inventory_quantity_set', '=', False),
                                      ('company_id', '=', company_rec.id)])
-            quant_ids = quants.filtered(lambda q: q.location_id.usage in ['internal', 'transit'])
+            quant_ids = quants.filtered(lambda q: q.location_id.usage in ['internal', 'transit'] and q.product_id.active)
             print ("quant_idsquant_ids=>>>>>>>>>>>>>>>", quant_ids)
             _logger.info("quant_ids %s", quant_ids)
             for quant in quant_ids:
