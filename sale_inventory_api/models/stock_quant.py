@@ -48,7 +48,17 @@ class StockQuant(models.Model):
                 
                 print ("inventoryStatusinventoryStatus", inventoryStatus)
                 _logger.info("name %s", quant.product_id.name)
-                _logger.info("default code %s", quant.product_id.default_code)
+                _logger.info("default code %s", {
+                        "storeId": company_rec.b_and_o_store_id,
+                        "productNo": quant.product_id and quant.product_id.default_code and int(quant.product_id.default_code),
+                        "onhandQuantity": quant.quantity > 0 and quant.quantity or 0,
+                        "inventoryDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
+                        "productDescription": quant.product_id.name[:100],
+                        "storeName": company_rec.name,
+                        "inventoryStatus": inventoryStatus,
+                        "serialNumber": quant.lot_id.name.strip(),
+                        "lines":quant.ids
+                    })
                 if quant.lot_id:
                     quant_list.append({
                         "storeId": company_rec.b_and_o_store_id,

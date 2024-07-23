@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 				sale_line_list.append({
 					"storeId": order_id.company_id.b_and_o_store_id,
-					"productNo": sale_line.product_id and int(sale_line.product_id.default_code),
+					"productNo": sale_line.product_id and sale_line.product_id.default_code,
 					"lineQuantity": sale_line.product_uom_qty,
 					"salesDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
 					"salesReference": order_id.name,
@@ -39,17 +39,6 @@ class SaleOrder(models.Model):
 					"productDescription": sale_line.product_id.name[:100],
 					"storeName": order_id.company_id.name,
 				})
-				_logger.info("sale_order_ids %s", {
-					"storeId": order_id.company_id.b_and_o_store_id,
-					"productNo": sale_line.product_id and int(sale_line.product_id.default_code),
-					"lineQuantity": sale_line.product_uom_qty,
-					"salesDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
-					"salesReference": order_id.name,
-					"lineNo": sale_line.id,
-					"productDescription": sale_line.product_id.name[:100],
-					"storeName": order_id.company_id.name,
-				})
-				print ("\n")
 				if not order_id.api_triggered:
 					order_id.api_triggered = True
 			if sale_line_list:
