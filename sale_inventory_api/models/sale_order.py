@@ -32,11 +32,14 @@ class SaleOrder(models.Model):
 				if sale_line.product_id.active == False:
 					_logger.info("product_id continuee %s", sale_line.product_id.name)
 					continue
+				if sale_line.product_id.detailed_type != 'product':
+					_logger.info("product_id type continuee %s", sale_line.product_id.name)
+					continue
 				order_id = sale_line.order_id
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 				sale_line_list.append({
 					"storeId": order_id.company_id.b_and_o_store_id,
-					"productNo": sale_line.product_id and sale_line.product_id.default_code,
+					"productNo": sale_line.product_id and int(sale_line.product_id.default_code),
 					"lineQuantity": sale_line.product_uom_qty,
 					"salesDate": f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}.0000Z",
 					"salesReference": order_id.name,
