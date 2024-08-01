@@ -30,6 +30,7 @@ class SaleOrder(models.Model):
 				_logger.info("product_id name %s", sale_line.product_id.name)
 				_logger.info("product_id code %s", sale_line.product_id.default_code)
 				if sale_line.product_id.active == False:
+					_logger.info("product_id continuee %s", sale_line.product_id.name)
 					continue
 				order_id = sale_line.order_id
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
