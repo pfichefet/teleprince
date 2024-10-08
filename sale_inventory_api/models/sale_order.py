@@ -27,14 +27,14 @@ class SaleOrder(models.Model):
 			_logger.info("sale_order_ids %s", sale_order_ids)
 			sale_line_list = []
 			for sale_line in sale_order_ids.mapped('order_line').filtered('product_id'):
-				_logger.info("product_id name %s", sale_line.product_id.name)
-				_logger.info("product_id code %s", sale_line.product_id.default_code)
 				if sale_line.product_id.active == False:
 					_logger.info("product_id continuee %s", sale_line.product_id.name)
 					continue
 				if sale_line.product_id.detailed_type != 'product':
 					_logger.info("product_id type continuee %s", sale_line.product_id.name)
 					continue
+				_logger.info("product_id name %s", sale_line.product_id.name)
+				_logger.info("product_id code %s", sale_line.product_id.default_code)
 				order_id = sale_line.order_id
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 				sale_line_list.append({
