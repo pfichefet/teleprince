@@ -4,6 +4,19 @@ import requests
 from odoo import models, fields, api, _
 from odoo.addons.sale_inventory_api.API.post_sale_inventory import PostSaleInventory
 _logger = logging.getLogger(__name__)
+from odoo.exceptions import ValidationError
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+    
+    default_code = fields.Char(string="Product Reference", required=True)
+
+    @api.constrains('default_code')
+    def _check_default_code(self):
+    	for record in self:
+    		if record.default_code and not record.default_code.isdigit():
+    			raise ValidationError(_("Product Reference must be an integer."))
 
 class SaleOrder(models.Model):
 	_inherit = 'sale.order'
