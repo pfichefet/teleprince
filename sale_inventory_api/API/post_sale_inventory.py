@@ -46,6 +46,9 @@ class PostSaleInventory:
         :return: True
         """
         url = getattr(self, f'sale_{self.environment}_url')
+        _logger.info('urlurl %s', url)
+        _logger.info('self.environment %s', self.environment)
+        _logger.info('self.key %s', self.key)
         headers = {
             "Content-Type": "application/json",
             "Ocp-Apim-Subscription-Key": self.key,
