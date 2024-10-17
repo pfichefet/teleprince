@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
 										('date_order', '!=', False),
 										('company_id', '=', company_rec.id)])
             
-			_logger.info("company_rec.name %s %s %s b_and_o_store_id", company_rec.b_and_o_store_id, company_rec.name, company_rec.b_and_o_api_environment)
+			_logger.info("company_rec.name %s %s %s b_and_o_store_id",type(company_rec.b_and_o_store_id), company_rec.b_and_o_store_id, company_rec.name, company_rec.b_and_o_api_environment)
 			sale_line_list = []
 			for sale_line in sale_order_ids.mapped('order_line').filtered('product_id'):
 				if sale_line.product_id.active == False:
