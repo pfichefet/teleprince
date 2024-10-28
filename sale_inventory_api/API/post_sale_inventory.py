@@ -15,13 +15,19 @@ class PostSaleInventory:
         inventory_url (str): Base url for posting inventory.
 
     """
-    sale_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Sale"
+    # sale_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Sale"
+    
     inventory_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Inventory"
-    sale_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Sale"
-    inventory_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Inventory"
+    # sale_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Sale"
+                
+    base_url = 'https://apim-apicatalog-p-01.azure-api.net/datasuite-upload-data/v1/'
+    sale_api = 83  # or some dynamic value
+    sale_prod_url = f"{base_url}/upload-data/{sale_api}"
+    inventory_prod_url = f"{base_url}/upload-data/{sale_api}"
+    
+    # inventory_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Inventory"
 
     def __init__(self, key, environment, time_between_requests=0.6):
-        print ("keyyyyyyyyyyyyyyyy", key)
         print ("environment", environment)
         """
         Args:
@@ -61,7 +67,7 @@ class PostSaleInventory:
                 headers=headers,
             )
             print ("response.status_code sale data", response.text)
-            print ("\n", response.status_code)
+            print ("\n response *** response", response.status_code)
             if response.status_code == 201:
                 return response
             elif response.status_code == 500:
