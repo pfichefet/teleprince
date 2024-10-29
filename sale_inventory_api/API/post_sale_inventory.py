@@ -68,6 +68,8 @@ class PostSaleInventory:
         )
         print ("response.status_code sale data", response.text)
         print ("\n response *** response", response.status_code)
+        _logger.info("response code %s", response.status_code)
+        _logger.info("response.text %s", response.text)
             # if response.status_code == 201:
             #     return response
             # elif response.status_code == 500:
