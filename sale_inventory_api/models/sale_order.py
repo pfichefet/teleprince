@@ -27,15 +27,15 @@ class SaleOrder(models.Model):
 										('date_order', '!=', False),
 										('company_id', '=', company_rec.id)
 										])
-			_logger.info("company_rec.name %s %s %s %s %s", sale_order_ids, type(company_rec.b_and_o_store_id), company_rec.b_and_o_store_id, company_rec.name, company_rec.b_and_o_api_environment)
+			_logger.info("company_rec.name %s %s %s %s %s",company_rec.name, sale_order_ids, type(company_rec.b_and_o_store_id), company_rec.b_and_o_store_id, company_rec.name, company_rec.b_and_o_api_environment)
 			sale_line_list = []
 			for sale_line in sale_order_ids.mapped('order_line').filtered('product_id'):
 				if sale_line.product_id.active == False:
 					continue
 				if sale_line.product_id.detailed_type != 'product':
 					continue
-				_logger.info("product_id name %s", sale_line.product_id.name)
-				_logger.info("product_id code %s", sale_line.product_id.default_code)
+    # _logger.info("product_id name %s", sale_line.product_id.name)
+    # _logger.info("product_id code %s", sale_line.product_id.default_code)
 				order_id = sale_line.order_id
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 				
