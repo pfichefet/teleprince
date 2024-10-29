@@ -60,25 +60,25 @@ class PostSaleInventory:
             "Ocp-Apim-Subscription-Key": self.key,
         }
         
-        try:
-            response = requests.post(
-                url,
-                json=payload,
-                headers=headers,
-            )
-            print ("response.status_code sale data", response.text)
-            print ("\n response *** response", response.status_code)
-            if response.status_code == 201:
-                return response
-            elif response.status_code == 500:
-                _logger.info('payload', payload)
-                return response
-                raise UserError(f"Request could not be completed, error cause: API {response.reason}")
-            else:
-                raise UserError(f"Request could not be completed, error cause: {response.json()}")
-            return response
-        except Exception as e:
-            raise UserError(f"Received Exception while calling api: {e}")
+        # try:
+        response = requests.post(
+            url,
+            json=payload,
+            headers=headers,
+        )
+        print ("response.status_code sale data", response.text)
+        print ("\n response *** response", response.status_code)
+            # if response.status_code == 201:
+            #     return response
+            # elif response.status_code == 500:
+            #     _logger.info('payload', payload)
+            #     return response
+            #     raise UserError(f"Request could not be completed, error cause: API {response.reason}")
+            # else:
+            #     raise UserError(f"Request could not be completed, error cause: {response.json()}")
+        return response
+        # except Exception as e:
+        #     raise UserError(f"Received Exception while calling api: {e}")
 
     def post_inventory_data(self, payload):
         """
