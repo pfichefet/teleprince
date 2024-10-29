@@ -20,7 +20,7 @@ class PostSaleInventory:
     inventory_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Inventory"
     # sale_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Sale"
                 
-    base_url = 'https://apim-apicatalog-p-01.azure-api.net/datasuite-upload-data/v1/'
+    base_url = 'https://apim-apicatalog-p-01.azure-api.net/datasuite-upload-data/v1'
     sale_api = 83  # or some dynamic value
     sale_prod_url = f"{base_url}/upload-data/{sale_api}"
     inventory_prod_url = f"{base_url}/upload-data/{sale_api}"
