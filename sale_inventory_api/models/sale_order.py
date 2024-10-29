@@ -34,8 +34,8 @@ class SaleOrder(models.Model):
 					continue
 				if sale_line.product_id.detailed_type != 'product':
 					continue
-    # _logger.info("product_id name %s", sale_line.product_id.name)
-    # _logger.info("product_id code %s", sale_line.product_id.default_code)
+				_logger.info("product_id name %s", company_rec.name)
+				_logger.info("product_id code %s", company_rec.name)
 				order_id = sale_line.order_id
 				year, month, day, hour, minute, second = order_id.date_order.timetuple()[:6]
 				
