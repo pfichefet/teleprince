@@ -31,11 +31,11 @@ class StockQuant(models.Model):
             quants = self.search([('inventory_quantity_set', '=', False),
                                      ('company_id', '=', company_rec.id)])
             quant_ids = quants.filtered(lambda q: q.location_id.usage in ['internal', 'transit'] and q.product_id.active)
-            _logger.info("quant_ids %s", quant_ids)
+            # _logger.info("quant_ids %s", quant_ids)
             _logger.info("company_rec.name %s %s %s %s %s",company_rec.name, company_rec.b_and_o_api_environment)
             for quant in quant_ids:
                 today_date = datetime.today()
-                print ("today_datetoday_date", today_date)
+                # print ("today_datetoday_date", today_date)
                 year, month, day, hour, minute, second = today_date.timetuple()[:6]
                 inventoryStatus = 'Sellable'
                 if quant.is_display_product or quant.product_id.sale_ok is False:
