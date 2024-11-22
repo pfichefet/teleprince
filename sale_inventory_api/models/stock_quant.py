@@ -98,7 +98,7 @@ class StockQuant(models.Model):
             if quant_list:
                 
                 data = {
-                    'fileTypeName': 'Sell-Out Inventory',
+                    'fileTypeName': 'Sell-Out Sales',
                     'data': quant_list
                 }
                 
