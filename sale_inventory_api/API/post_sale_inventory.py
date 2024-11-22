@@ -66,6 +66,7 @@ class PostSaleInventory:
                 json=payload,
                 headers=headers,
             )
+            _logger.info("urll %s", url)
             _logger.info("response code %s", response.status_code)
             _logger.info("response.text %s", response.text)
             if response.status_code == 201:
@@ -92,14 +93,17 @@ class PostSaleInventory:
             "Ocp-Apim-Subscription-Key": self.key,
         }
 
+        _logger.info("urll %s", url)
         # try:
         response = requests.post(
             url,
             json=payload,
             headers=headers,
         )
-        print ("response.status_code Inventory>>>", response.status_code)
+        _logger.info("response code %s", response.status_code)
+        _logger.info("response.text %s", response.text)
         if response.status_code == 201:
             return True
         else:
+            print ("response.status_code Inventory>>>", response.status_code)
             raise UserError(f"Request could not be completed, error cause: {response.json()}")
