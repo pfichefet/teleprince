@@ -61,6 +61,7 @@ class StockQuant(models.Model):
                         # "inventorystatus": inventoryStatus,
                         "serialNumber": quant.lot_id.name.strip(),
                         "storeName": company_rec.name,
+                        "salesNo": quant.name,
                     })
                     
                     # _logger.info("default code %s", {
@@ -81,6 +82,7 @@ class StockQuant(models.Model):
                         "salesDate": str(today_date)[:10],
                         "materialName": quant.product_id.name[:100],
                         "storeName": company_rec.name,
+                        "salesNo": quant.name,
                         # "inventorystatus": inventoryStatus,
                     })
                     
