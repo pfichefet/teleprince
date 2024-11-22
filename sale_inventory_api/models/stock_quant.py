@@ -32,6 +32,7 @@ class StockQuant(models.Model):
                                      ('company_id', '=', company_rec.id)])
             quant_ids = quants.filtered(lambda q: q.location_id.usage in ['internal', 'transit'] and q.product_id.active)
             _logger.info("quant_ids %s", quant_ids)
+            _logger.info("company_rec.name %s %s %s %s %s",company_rec.name, company_rec.b_and_o_api_environment)
             for quant in quant_ids:
                 today_date = datetime.today()
                 print ("today_datetoday_date", today_date)
@@ -47,7 +48,8 @@ class StockQuant(models.Model):
                     inventoryStatus = 'Non-Sellable'
                 
                 print ("inventoryStatusinventoryStatus", inventoryStatus)
-                _logger.info("name %s", quant.product_id.name)
+                # _logger.info("name %s", quant.product_id.name)
+                
                 
                 if quant.lot_id:
                     quant_list.append({
