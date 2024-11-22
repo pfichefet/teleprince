@@ -55,8 +55,8 @@ class StockQuant(models.Model):
                     quant_list.append({
                         "storeId": str(company_rec.b_and_o_store_id),
                         "sku": quant.product_id and quant.product_id.default_code and quant.product_id.default_code[-10:],
-                        "inventoryQuantity": quant.quantity > 0 and str(quant.quantity) or str(0),
-                        "inventoryDate": str(today_date)[:10],
+                        "SoldQuantity": quant.quantity > 0 and str(quant.quantity) or str(0),
+                        "salesDate": str(today_date)[:10],
                         "materialName": quant.product_id.name[:100],
                         "inventorystatus": inventoryStatus,
                         "serialNumber": quant.lot_id.name.strip(),
@@ -77,8 +77,8 @@ class StockQuant(models.Model):
                     quant_list.append({
                         "storeId": str(company_rec.b_and_o_store_id),
                         "sku": quant.product_id and quant.product_id.default_code and quant.product_id.default_code[-10:],
-                        "inventoryQuantity": quant.quantity > 0 and str(quant.quantity) or str(0),
-                        "inventoryDate": str(today_date)[:10],
+                        "SoldQuantity": quant.quantity > 0 and str(quant.quantity) or str(0),
+                        "salesDate": str(today_date)[:10],
                         "materialName": quant.product_id.name[:100],
                         "storeName": company_rec.name,
                         "inventorystatus": inventoryStatus,
