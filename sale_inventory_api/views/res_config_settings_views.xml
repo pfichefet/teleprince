@@ -90,7 +90,7 @@
                             <div class="col-12 col-lg-6 o_setting_box" id="api_key">
                                 <div class="o_setting_left_pane"/>
                                 <div class="o_setting_right_pane">
-                                    <span class="o_form_label">API ID</span>
+                                    <span class="o_form_label">Start Date</span>
                                     <div class="text-muted">
                                         Odoo will send Sale data starting from this date.
                                     </div>
@@ -102,7 +102,7 @@
                             <div class="col-12 col-lg-6 o_setting_box" id="api_key">
                                 <div class="o_setting_left_pane"/>
                                 <div class="o_setting_right_pane">
-                                    <span class="o_form_label">API ID</span>
+                                    <span class="o_form_label">Time Delta</span>
                                     <div class="text-muted">
                                         Specify the number of days Odoo should wait before sending sales data.
                                         For example, if a sales order is dated as day X, Odoo will send the data on day X + time_delta.
