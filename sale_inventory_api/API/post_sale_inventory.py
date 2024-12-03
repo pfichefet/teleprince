@@ -1,109 +1,48 @@
 import requests
-import json
-import datetime
-import time
+from odoo import _
 from odoo.exceptions import UserError
-import logging
-_logger = logging.getLogger(__name__)
 
 
 class PostSaleInventory:
-    """A wrapper around the bang-olufsen.
-
-    Attributes:
-        sale_url (str): Base url for posting sales.
-        inventory_url (str): Base url for posting inventory.
-
     """
-    # sale_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Sale"
-    
-    inventory_test_url = "https://test.api.bang-olufsen.dk/posdata/v1-test/api/Inventory"
-    # sale_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Sale"
-                
-    base_url = 'https://apim-apicatalog-p-01.azure-api.net/datasuite-upload-data/v1'
-    sale_api = 83  # or some dynamic value
-    sale_prod_url = f"{base_url}/upload-data/{sale_api}"
-    inventory_prod_url = f"{base_url}/upload-data/{sale_api}"
-    
-    # inventory_prod_url = "https://api.bang-olufsen.dk/posdata/v1/api/Inventory"
+    A wrapper around the bang-olufsen.
+    """
 
-    def __init__(self, key, environment, time_between_requests=0.6):
-        print ("environment", environment)
+    def __init__(self, company, url, time_between_requests=0.6):
         """
         Args:
-            key (str): The API key issued in the Bang olufsen API.
+            company (Odoo record): A company record.
+            url (str): The URL used to send the request.
             time_between_requests (float): Time in seconds between requests to
                 the API to prevent spam. Default is 0.5 to prevent calls
                 exceeding the 600 per 5 minutes limit.
         """
-        if not key:
-            raise UserError("Please configure the B & O API in the company.")
-        self.key = key
+        if not company.b_and_o_api_active:
+            raise UserError(_("B&O API is not actviated for this company %s.") % company.name)
+        if not company.b_and_o_api_key:
+            raise UserError(_("B&O API key is missing for company %s.") % company.name)
+        self.key = company.b_and_o_api_key
+        self.url = url
         self.time_between_requests = time_between_requests
-
-        # : datetime: Timestamp instantiated as NoneType
         self.last_request_timestamp = None
-        self.environment = environment
 
-    def post_sale_data(self, payload):
+
+    def post_data(self, body):
         """
-        Posting Sales data
-        :param payload: Data
-        :return: True
+        Posting data
+        :param body: Data to send
+        :return: http response
         """
-        url = getattr(self, f'sale_{self.environment}_url')
-        _logger.info('urlurl %s', url)
-        _logger.info('self.environment %s', self.environment)
-        _logger.info('self.key %s', self.key)
         headers = {
             "Content-Type": "application/json",
             "Ocp-Apim-Subscription-Key": self.key,
         }
-        
         try:
             response = requests.post(
-                url,
-                json=payload,
+                self.url,
+                json=body,
                 headers=headers,
             )
-            _logger.info("urll %s", url)
-            _logger.info("response code %s", response.status_code)
-            _logger.info("response.text %s", response.text)
-            if response.status_code == 201:
-                return response
-            elif response.status_code == 500:
-                _logger.info('payload', payload)
-                return response
-                raise UserError(f"Request could not be completed, error cause: API {response.reason}")
-            else:
-                raise UserError(f"Request could not be completed, error cause: {response.json()}")
             return response
         except Exception as e:
             raise UserError(f"Received Exception while calling api: {e}")
-
-    def post_inventory_data(self, payload):
-        """
-        Posting Inventory data
-        :param payload: Data
-        :return: True
-        """
-        url = getattr(self, f'inventory_{self.environment}_url')
-        headers = {
-            "Content-Type": "application/json",
-            "Ocp-Apim-Subscription-Key": self.key,
-        }
-
-        _logger.info("urll %s", url)
-        # try:
-        response = requests.post(
-            url,
-            json=payload,
-            headers=headers,
-        )
-        _logger.info("response code %s", response.status_code)
-        _logger.info("response.text %s", response.text)
-        if response.status_code == 201:
-            return True
-        else:
-            print ("response.status_code Inventory>>>", response.status_code)
-            raise UserError(f"Request could not be completed, error cause: {response.json()}")

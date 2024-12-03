@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree Views -->
+    <record id="bo_report_type_view_tree" model="ir.ui.view">
+        <field name="name">b.and.o.report.type.view.tree</field>
+        <field name="model">bo.report.type</field>
+        <field name="arch" type="xml">
+            <tree string="Type Of Report">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form Views -->
+    <record id="bo_report_type_view_form" model="ir.ui.view">
+        <field name="name">b.and.o.report.type.view.form</field>
+        <field name="model">bo.report.type</field>
+        <field name="arch" type="xml">
+            <form string="Type Of Report">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group name="parameters">
+                        <group name="technical">
+                            <field name="technical_name"/>
+                        </group>
+                        <group name="url">
+                            <field name="url_endpoint"/>
+                            <field name="url_no_data_endpoint"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="bo_report_type_action" model="ir.actions.act_window">
+        <field name="name">B&amp;O Report Types</field>
+        <field name="res_model">bo.report.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

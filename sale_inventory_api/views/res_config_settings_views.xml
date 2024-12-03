@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.B.and.O.api</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block"
+                     string="B&amp;O API"
+                     data-string="B&amp;O API"
+                     data-key="sale_inventory_api"
+                     groups="sale_inventory_api.b_and_o_group_manager">
+                    <h2>REST API</h2>
+                    <div class="row mt16 o_settings_container" name="rest_api_setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="b_and_o_api_activate">
+                            <div class="o_setting_left_pane">
+                                <field name="b_and_o_api_active"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="b_and_o_api_active"/>
+                                <div class="text-muted">
+                                    Activate the B&amp;O REST API.
+                                </div>
+                            </div>
+                        </div>
+                        <div name="b_and_o_api_parameters" attrs="{'invisible': [('b_and_o_api_active', '=', False)]}">
+                            <div class="col-12 col-lg-6 o_setting_box" id="base_url">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Base URL</span>
+                                    <div class="text-muted">
+                                        Base URL used to send API REST requests
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_base_url"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="base_url">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Test URL</span>
+                                    <div class="text-muted">
+                                        Test URL used to send API REST requests
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_test_url"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="api_key">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">API KEY</span>
+                                    <div class="text-muted">
+                                        API Key used in the request to be authenticated.
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_api_key"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="api_key">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">API ID</span>
+                                    <div class="text-muted">
+                                        API ID used in the request to be authenticated.
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_api_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="api_key">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">API STORE ID</span>
+                                    <div class="text-muted">
+                                        API Store ID used in the request (only if not defined on the warehouse).
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_api_store"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="api_key">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">API ID</span>
+                                    <div class="text-muted">
+                                        Odoo will send Sale data starting from this date.
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_api_start_date"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="api_key">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">API ID</span>
+                                    <div class="text-muted">
+                                        Specify the number of days Odoo should wait before sending sales data.
+                                        For example, if a sales order is dated as day X, Odoo will send the data on day X + time_delta.
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_api_time_delta"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="api_key">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Environment</span>
+                                    <div class="text-muted">
+                                        Defined the environment we used to send data, B&amp;O will consider only request send to a Production environment.
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="b_and_o_api_environment"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_b_and_o_api_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'sale_inventory_api', 'bin_size': False}</field>
+    </record>
+
+</odoo>

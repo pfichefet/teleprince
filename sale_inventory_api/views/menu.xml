@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+            id="b_and_o_api_menu"
+            name="B&amp;O API"
+            web_icon="sale_inventory_api,static/description/icon.png"
+            sequence="525"/>
+
+    <menuitem
+            id="b_and_o_api_menu_report"
+            name="Reports"
+            action="sale_inventory_api.bo_report_action"
+            parent="b_and_o_api_menu"
+            sequence="5"/>
+
+    <menuitem
+            id="b_and_o_api_menu_config"
+            name="Configuration"
+            parent="b_and_o_api_menu"
+            sequence="20"/>
+
+    <menuitem id="b_and_o_api_config_settings_menu"
+              name="Settings"
+              parent="b_and_o_api_menu_config"
+              action="action_b_and_o_api_config_settings"
+              groups="sale_inventory_api.b_and_o_group_manager"
+              sequence="5"/>
+
+    <menuitem
+            id="b_and_o_api_menu_report_type"
+            name="Report Types"
+            action="sale_inventory_api.bo_report_type_action"
+            parent="b_and_o_api_menu_config"
+            groups="sale_inventory_api.b_and_o_group_manager"
+            sequence="10"/>
+</odoo>

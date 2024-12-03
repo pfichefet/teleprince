@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="module_category_b_and_o_api" model="ir.module.category">
+            <field name="name">B&amp;O API</field>
+            <field name="sequence">150</field>
+        </record>
+
+        <record id="b_and_o_group_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="sale_inventory_api.module_category_b_and_o_api"/>
+        </record>
+
+        <record id="b_and_o_group_manager" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('sale_inventory_api.b_and_o_group_user'))]"/>
+            <field name="category_id" ref="sale_inventory_api.module_category_b_and_o_api"/>
+        </record>
+
+        <record id="b_and_o_report_rule_company" model="ir.rule">
+            <field name="name">Multi-company B and O reports</field>
+            <field name="model_id" ref="sale_inventory_api.model_bo_report"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="b_and_o_report_sale_line_rule_company" model="ir.rule">
+            <field name="name">Multi-company B and O sale line reports</field>
+            <field name="model_id" ref="sale_inventory_api.model_bo_report_line_sale"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="b_and_o_report_inventory_line_rule_company" model="ir.rule">
+            <field name="name">Multi-company B and O inventory line reports</field>
+            <field name="model_id" ref="sale_inventory_api.model_bo_report_line_quant"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+    </data>
+</odoo>
