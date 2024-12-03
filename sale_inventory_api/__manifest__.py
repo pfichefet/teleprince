@@ -1,6 +1,6 @@
 {
     'name': 'B&O Rest API',
-    'version': '1.0',
+    'version': '2.0',
     'summary': 'Sent sale and inventory report to B&O through REST API',
     'sequence': 10,
     'author': 'The Fish Consulting',
