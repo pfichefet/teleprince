@@ -44,6 +44,10 @@ class BOReport(models.Model):
 
     @api.model
     def get_bo_report_overlap(self, date_start, date_end, report_type_id, company_id, report_id=False):
+        """
+        Return B&O report that match the given parameters.
+        Used to find B&O report that would be in conflict with the one we are creating.
+        """
         domain = [('date_start', '<=', date_end),
                   ('date_end', '>=', date_start),
                   ('report_type_id', '=', report_type_id),
@@ -94,6 +98,9 @@ class BOReport(models.Model):
         self.sudo().write({"report_line_sale_ids": list_values})
 
     def generate_inventory_data(self):
+        """
+        Generate data to send to B&O based on the inventory.
+        """
         self.ensure_one()
         quants = self.env['stock.quant'].search([('inventory_quantity_set', '=', False),
                                                  ('company_id', '=', self.company_id.id),
@@ -109,7 +116,7 @@ class BOReport(models.Model):
 
     def generate_data(self):
         """
-        Search in the database for data to sent.
+        Search in the database for data to send.
         """
         for report in self.filtered(lambda r: r.status != 'sent'):
             if report.report_type_technical_name == "Sell-Out Sales":
@@ -229,6 +236,10 @@ class BOReport(models.Model):
 
     @api.model
     def generate_report(self, values):
+        """
+        Try to generate a B&O report, and to send its data.
+        This method purpose it to be called by a CRON.
+        """
         try:
             overlap_report = self.get_bo_report_overlap(values['date_start'], values['date_end'], values['report_type_id'], values['company_id'])
             if not overlap_report:

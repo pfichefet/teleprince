@@ -10,6 +10,9 @@ class ProductTemplate(models.Model):
 
     @api.depends('seller_ids', 'seller_ids.partner_id.is_b_and_o_supplier')
     def _compute_is_api_b_and_o_compliant(self):
+        """
+        A product is compliant with the B&O API by default if its supplier is B&O.
+        """
         for product in self:
             if not product.is_api_b_and_o_compliant:
                 for seller in product.seller_ids:

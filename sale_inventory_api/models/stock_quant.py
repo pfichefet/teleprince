@@ -14,6 +14,9 @@ class StockQuant(models.Model):
         return fields_to_create + ['is_display_product']
 
     def prepare_bo_report_line(self, report):
+        """
+        Prepare a dictionary of values to create B&O report line.
+        """
         self.ensure_one()
         values = {
             "quant_id": self.id,
