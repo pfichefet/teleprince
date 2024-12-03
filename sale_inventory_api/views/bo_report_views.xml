@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Tree Views -->
+    <record id="bo_report_view_tree" model="ir.ui.view">
+        <field name="name">b.and.o.report.view.tree</field>
+        <field name="model">bo.report</field>
+        <field name="arch" type="xml">
+            <tree string="B&amp;O Reports" decoration-info="(status == 'draft')" decoration-warning="(status == 'error')" decoration-danger="(status == 'fail')" decoration-muted="(status == 'sent')">
+                <field name="name"/>
+                <field name="report_type_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="status"/>
+                <field name="company_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form Views -->
+    <record id="bo_report_view_form" model="ir.ui.view">
+        <field name="name">b.and.o.report.view.form</field>
+        <field name="model">bo.report</field>
+        <field name="arch" type="xml">
+            <form string="B&amp;O Report">
+                <field name="report_type_technical_name" invisible="1"/>
+                <header>
+                    <button name="generate_data" string="Reload" type="object" attrs="{'invisible': [('status', '=', 'sent')]}"/>
+                    <button name="check_data_validity" string="Test Data Validity" type="object" attrs="{'invisible': [('status', '=', 'sent')]}"/>
+                    <button name="send_data" string="Send" type="object" attrs="{'invisible': [('status', 'in', ['draft', 'error', 'sent'])]}"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,correct,sent"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <span class="o_form_label">B&amp;O Report</span>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group name="parameters" attrs="{'readonly': [('status', '=', 'sent')]}">
+                        <group name="date">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                        <group name="details" attrs="{'readonly': [('status', '=', 'sent')]}">
+                            <field name="report_type_id"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sell-Out Sales" name="line_sale" attrs="{'invisible': [('report_type_technical_name', '!=', 'Sell-Out Sales')], 'readonly': [('status', '=', 'sent')]}">
+                            <field name="report_line_sale_ids">
+                                <tree string="Sell-Out Sales" decoration-warning="error" editable="bottom" create="0">
+                                    <field name="error" invisible="1"/>
+                                    <field name="warehouse_id" optional="hide"/>
+                                    <field name="date"/>
+                                    <field name="order_id" optional="hide"/>
+                                    <field name="product_id"/>
+                                    <field name="lot_id" optional="show"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id" optional="hide"/>
+                                    <field name="error_msg" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Sell-Out Inventory" name="line_inventory" attrs="{'invisible': [('report_type_technical_name', '!=', 'Sell-Out Inventory')], 'readonly': [('status', '=', 'sent')]}">
+                            <field name="report_line_quant_ids">
+                                <tree string="Sell-Out Inventory" decoration-warning="error" editable="bottom" create="0">
+                                    <field name="error" invisible="1"/>
+                                    <field name="quant_lot_id" invisible="1"/>
+                                    <field name="warehouse_id" optional="hide"/>
+                                    <field name="date"/>
+                                    <field name="quant_id" optional="hide"/>
+                                    <field name="product_id"/>
+                                    <field name="lot_id" optional="show"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id" optional="hide"/>
+                                    <field name="error_msg" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Erros" name="send_error" attrs="{'invisible': [('status', '!=', 'fail')]}">
+                            <group name="send_error_group">
+                                <field name="url"/>
+                                <field name="error_msg"/>
+                            </group>
+                            <field name="body"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search Views -->
+    <record id="bo_report_view_search" model="ir.ui.view">
+        <field name="name">bo.report.view.search</field>
+        <field name="model">bo.report</field>
+        <field name="arch" type="xml">
+            <search string="Search B&amp;O Report">
+                <field name="name" string="Name" filter_domain="[('name', 'ilike', self)]"/>
+                <separator/>
+                <filter name="draft" string="Draft" domain="[('status', '=', 'draft')]"/>
+                <filter name="error" string="Error" domain="[('status', '=', 'error')]"/>
+                <filter name="sent" string="Sent" domain="[('status', '=', 'sent')]"/>
+                <filter name="fail" string="Fail" domain="[('status', '=', 'fail')]"/>
+                <separator/>
+                <filter name="date_start" string="Start Date" date="date_start"/>
+                <filter name="date_end" string="End Date" date="date_end"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="status" context="{'group_by':'status'}"/>
+                    <filter string="Company" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                    <filter string="Type" name="report_type" context="{'group_by': 'report_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="bo_report_action" model="ir.actions.act_window">
+        <field name="name">B&amp;O Reports</field>
+        <field name="res_model">bo.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="bo_report_view_search"/>
+    </record>
+
+</odoo>

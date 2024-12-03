@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from . import post_sale_inventory
+# from . import post_sale_inventory
 
 

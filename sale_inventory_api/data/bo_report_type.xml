@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="bo_report_type_inventory" model="bo.report.type">
+            <field name="name">Sell-Out Inventory</field>
+            <field name="active">1</field>
+            <field name="technical_name">Sell-Out Inventory</field>
+            <field name="url_endpoint">{baseUrl}/upload-data/{apiId}</field>
+        </record>
+
+        <record id="bo_report_type_sale" model="bo.report.type">
+            <field name="name">Sell-Out Sales</field>
+            <field name="active">1</field>
+            <field name="technical_name">Sell-Out Sales</field>
+            <field name="url_endpoint">{baseUrl}/upload-data/{apiId}</field>
+            <field name="url_no_data_endpoint">{baseUrl}/record-no-data/{apiId}</field>
+        </record>
+    </data>
+</odoo>

@@ -1,7 +1,12 @@
-# -*- coding: utf-8 -*-
-
-from . import sale_order
-from . import stock_quant
 from . import res_company
-
-
+from . import res_config_settings
+from . import bo_report_type
+from . import bo_report
+from . import bo_report_line_abstract
+from . import bo_report_line_sale
+from . import bo_report_line_quant
+from . import stock_warehouse
+from . import stock_quant
+from . import sale_order_line
+from . import res_partner
+from . import product_template

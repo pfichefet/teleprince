@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bo_report_user,Access user B&O Report,model_bo_report,sale_inventory_api.b_and_o_group_user,1,0,0,0
+access_bo_report_line_sale_user,Access user B&O Report Line Sale,model_bo_report_line_sale,sale_inventory_api.b_and_o_group_user,1,0,0,0
+access_bo_report_line_quant_user,Access user B&O Report Line Quant,model_bo_report_line_quant,sale_inventory_api.b_and_o_group_user,1,0,0,0
+access_bo_report_type_user,Access user B&O Report type,model_bo_report_type,sale_inventory_api.b_and_o_group_user,1,0,0,0
+
+access_bo_report_manager,access manager B&O Report,model_bo_report,sale_inventory_api.b_and_o_group_manager,1,1,1,0
+access_bo_report_type_manager,access manager B&O Report type,model_bo_report_type,sale_inventory_api.b_and_o_group_manager,1,1,1,0
+access_bo_report_line_sale_manager,Access manager B&O Report Line Sale,model_bo_report_line_sale,sale_inventory_api.b_and_o_group_user,1,1,0,1
+access_bo_report_line_quant_manager,Access manager B&O Report Line Quant,model_bo_report_line_quant,sale_inventory_api.b_and_o_group_user,1,1,0,1
