@@ -19,7 +19,7 @@ class BOReport(models.Model):
     date_end = fields.Date(string='End Date', required=True)
     report_type_id = fields.Many2one("bo.report.type", string='Report Type', required=True)
     report_type_technical_name = fields.Char(string='Report Type Technical Name', related='report_type_id.technical_name')
-    status = fields.Selection([('draft', 'Draft'), ('error', 'Error'), ('correct', 'Correct'), ('sent', 'Sent'), ('fail', 'Fail')],
+    status = fields.Selection([('draft', 'Draft'), ('error', 'Error'), ('correct', 'Correct'), ('sent', 'Sent'), ('fail', 'Fail'), ('deleted', 'Deleted')],
                               string="Status",
                               required=True,
                               readonly=True,
@@ -29,6 +29,7 @@ class BOReport(models.Model):
     report_line_quant_ids = fields.One2many('bo.report.line.quant', 'report_id', string='Report Inventory Lines')
     body = fields.Text(string="Data", readonly=True)
     url = fields.Char(string="URL", readonly=True)
+    upload_reference_guid = fields.Char(string="Upload Reference Guid", readonly=True)
     error_msg = fields.Text(string="Error", readonly=True)
     company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company)
 
@@ -170,7 +171,7 @@ class BOReport(models.Model):
         Send the data to B&O.
         """
         self.check_data_validity()
-        for report in self.filtered(lambda r: r.status == 'correct'):
+        for report in self.filtered(lambda r: r.status in ['correct', 'fail'] and not r.upload_reference_guid):
             body = report.prepare_json_body()
             base_url = report.company_id.get_api_bo_url()
             if body.get("data", False):
@@ -182,19 +183,51 @@ class BOReport(models.Model):
             api_id = report.company_id.b_and_o_api_id
             url = url_endpoint.format(baseUrl=base_url, apiId=api_id)
             report.sudo().url = url
-            post_sale_inventory_api = PostSaleInventory(
-                report.company_id, url,
-            )
-            try:
-                response = post_sale_inventory_api.post_data(body)
-                if response.status_code != 200:
-                    error_message = response.json().get("message", "No message provided")
-                    report.error_msg = error_message
-                    report.sudo().status = 'fail'
-            except Exception as e:
-                report.error_msg = e
+            request_sent = report.send_request(url)
+            if request_sent:
+                report.sudo().status = 'sent'
+            else:
                 report.sudo().status = 'fail'
         return True
+
+    def delete_data(self):
+        """
+        Delete the data that were sent to B&O
+        """
+        for report in self.filtered(lambda r: r.status in ['sent', 'fail'] and r.upload_reference_guid):
+            base_url = report.company_id.get_api_bo_url()
+            url_delete_endpoint = report.report_type_id.url_delete_endpoint
+            if url_delete_endpoint:
+                api_id = report.company_id.b_and_o_api_id
+                url = url_delete_endpoint.format(baseUrl=base_url, apiId=api_id, uploadReferenceGuid=report.upload_reference_guid)
+                report.sudo().url = url
+                request_sent = report.send_request(url, method_name="DELETE")
+                if request_sent:
+                    report.sudo().status = 'deleted'
+                else:
+                    report.sudo().status = 'fail'
+        return True
+
+    def send_request(self, url, method_name="POST"):
+        """
+        Send HTTP request to B&O.
+        """
+        self.ensure_one()
+        post_sale_inventory_api = PostSaleInventory(
+            self.company_id, url,
+        )
+        try:
+            response = post_sale_inventory_api.api_send_data(method_name=method_name)
+            if response.status_code != 200:
+                error_message = response.json().get("message", "No message provided")
+                self.error_msg = error_message
+                return False
+            else:
+                self.upload_reference_guid = response.json().get("uploadReferenceGuid", "")
+                return True
+        except Exception as e:
+            self.error_msg = e
+            return False
 
     @api.model
     def send_data_by_cron(self, bo_report_type_name):
@@ -233,6 +266,13 @@ class BOReport(models.Model):
                 self.sudo().generate_report(values)
             else:
                 raise UserError(_("Report type technical name unsupported %s." % bo_report_type_name))
+
+    def reset_to_draft(self):
+        """
+        Reset to draft
+        """
+        self.ensure_one()
+        self.sudo().status = "draft"
 
     @api.model
     def generate_report(self, values):

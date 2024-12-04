@@ -29,6 +29,7 @@
                         </group>
                         <group name="url">
                             <field name="url_endpoint"/>
+                            <field name="url_delete_endpoint"/>
                             <field name="url_no_data_endpoint"/>
                         </group>
                     </group>

@@ -27,7 +27,7 @@ class PostSaleInventory:
         self.last_request_timestamp = None
 
 
-    def post_data(self, body):
+    def api_send_data(self, body=False, method_name="POST"):
         """
         Posting data
         :param body: Data to send
@@ -38,11 +38,10 @@ class PostSaleInventory:
             "Ocp-Apim-Subscription-Key": self.key,
         }
         try:
-            response = requests.post(
-                self.url,
-                json=body,
-                headers=headers,
-            )
+            if method_name == "POST":
+                response = requests.post(self.url, json=body, headers=headers)
+            else:
+                response = requests.delete(self.url, headers=headers)
             return response
         except Exception as e:
             raise UserError(f"Received Exception while calling api: {e}")

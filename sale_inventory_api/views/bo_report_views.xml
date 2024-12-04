@@ -6,7 +6,7 @@
         <field name="name">b.and.o.report.view.tree</field>
         <field name="model">bo.report</field>
         <field name="arch" type="xml">
-            <tree string="B&amp;O Reports" decoration-info="(status == 'draft')" decoration-warning="(status == 'error')" decoration-danger="(status == 'fail')" decoration-muted="(status == 'sent')">
+            <tree string="B&amp;O Reports" decoration-info="(status == 'correct')" decoration-warning="(status == 'error')" decoration-danger="(status == 'fail')" decoration-success="(status == 'sent')" decoration-muted="(status == 'deleted')">
                 <field name="name"/>
                 <field name="report_type_id"/>
                 <field name="date_start"/>
@@ -25,9 +25,11 @@
             <form string="B&amp;O Report">
                 <field name="report_type_technical_name" invisible="1"/>
                 <header>
-                    <button name="generate_data" string="Reload" type="object" attrs="{'invisible': [('status', '=', 'sent')]}"/>
-                    <button name="check_data_validity" string="Test Data Validity" type="object" attrs="{'invisible': [('status', '=', 'sent')]}"/>
-                    <button name="send_data" string="Send" type="object" attrs="{'invisible': [('status', 'in', ['draft', 'error', 'sent'])]}"/>
+                    <button name="generate_data" string="Reload" type="object" attrs="{'invisible': [('status', 'in', ['sent', 'deleted'])]}"/>
+                    <button name="check_data_validity" string="Test Data Validity" type="object" attrs="{'invisible': [('status', 'in', ['sent', 'deleted'])]}"/>
+                    <button name="send_data" string="Send" type="object" attrs="{'invisible': ['|', ('status', '!=', 'correct'), ('upload_reference_guid', '!=', False)]}"/>
+                    <button name="delete_data" string="Delete" type="object" attrs="{'invisible': ['|', ('status', 'not in', ['sent', 'fail']), ('upload_reference_guid', '=', False)]}"/>
+                    <button name="reset_to_draft" string="Reset" type="object" attrs="{'invisible': [('status', '!=', 'deleted')]}"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,correct,sent"/>
                 </header>
                 <sheet>
@@ -45,6 +47,7 @@
                         <group name="details" attrs="{'readonly': [('status', '=', 'sent')]}">
                             <field name="report_type_id"/>
                             <field name="company_id"/>
+                            <field name="upload_reference_guid"/>
                         </group>
                     </group>
                     <notebook>
