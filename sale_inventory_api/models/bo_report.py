@@ -183,7 +183,7 @@ class BOReport(models.Model):
             api_id = report.company_id.b_and_o_api_id
             url = url_endpoint.format(baseUrl=base_url, apiId=api_id)
             report.sudo().url = url
-            request_sent = report.send_request(url)
+            request_sent = report.send_request(url, body)
             if request_sent:
                 report.sudo().status = 'sent'
             else:
@@ -208,7 +208,7 @@ class BOReport(models.Model):
                     report.sudo().status = 'fail'
         return True
 
-    def send_request(self, url, method_name="POST"):
+    def send_request(self, url, body=False, method_name="POST"):
         """
         Send HTTP request to B&O.
         """
@@ -217,13 +217,13 @@ class BOReport(models.Model):
             self.company_id, url,
         )
         try:
-            response = post_sale_inventory_api.api_send_data(method_name=method_name)
+            response = post_sale_inventory_api.api_send_data(body=body, method_name=method_name)
             if response.status_code != 200:
                 error_message = response.json().get("message", "No message provided")
                 self.error_msg = error_message
                 return False
             else:
-                self.upload_reference_guid = response.json().get("uploadReferenceGuid", "")
+                self.upload_reference_guid = response.json().get("uploadReferenceId", False)
                 return True
         except Exception as e:
             self.error_msg = e
