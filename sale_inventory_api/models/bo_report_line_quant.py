@@ -28,6 +28,7 @@ class BOReportLineQuant(models.Model):
                 "inventoryDate": date.strftime('%Y-%m-%d'),
                 "inventorystatus": inventory_status,
                 "inventoryQuantity": str(quant.available_quantity),
+                "unitofmeasure": self.uom_id.name,
             })
             if inventory_status == 'Reserved':
                 reserved_values = values.copy()

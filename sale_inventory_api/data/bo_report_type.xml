@@ -6,6 +6,7 @@
             <field name="active">1</field>
             <field name="technical_name">Sell-Out Inventory</field>
             <field name="url_endpoint">{baseUrl}/upload-data/{apiId}</field>
+            <field name="url_delete_endpoint">{baseUrl}/delete-upload-by-guid-ref/{apiId}/upload/{uploadReferenceGuid}</field>
         </record>
 
         <record id="bo_report_type_sale" model="bo.report.type">
@@ -14,6 +15,7 @@
             <field name="technical_name">Sell-Out Sales</field>
             <field name="url_endpoint">{baseUrl}/upload-data/{apiId}</field>
             <field name="url_no_data_endpoint">{baseUrl}/record-no-data/{apiId}</field>
+            <field name="url_delete_endpoint">{baseUrl}/delete-upload-by-guid-ref/{apiId}/upload/{uploadReferenceGuid}</field>
         </record>
     </data>
 </odoo>

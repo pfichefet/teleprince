@@ -10,3 +10,4 @@ class BOReportType(models.Model):
     technical_name = fields.Char(string='Technical Name', required=True)
     url_endpoint = fields.Char(string='URL Endpoint', required=True)
     url_no_data_endpoint = fields.Char(string='URL NoData Endpoint')
+    url_delete_endpoint = fields.Char(string='URL Delete Endpoint')
