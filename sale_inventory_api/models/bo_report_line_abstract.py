@@ -88,7 +88,7 @@ class BOReportLineAbstract(models.AbstractModel):
             "storeId": str(self.warehouse_id.store_identifier) if self.warehouse_id and self.warehouse_id.store_identifier else str(self.company_id.b_and_o_api_store),
             "sku": self.product_id.default_code,
             "materialName": self.product_id.display_name,
-            "storeName": self.warehouse_id.name,
+            "storeName": self.warehouse_id.name if self.warehouse_id and self.warehouse_id.store_identifier else self.company_id.name,
         }
         if self.lot_id:
             values.update({
