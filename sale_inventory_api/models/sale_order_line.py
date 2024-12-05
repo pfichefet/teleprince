@@ -34,7 +34,7 @@ class SaleOrderLine(models.Model):
             "sale_line_id": self.id,
             "report_id": report.id,
             "warehouse_id": self.warehouse_id.id,
-            "date": self.order_id.date_order,
+            "date": self.order_id.invoice_date,
             "product_id": self.product_id.id,
             "company_id": self.company_id.id,
         }
