@@ -6,7 +6,7 @@ class BOReportLineSale(models.Model):
     _inherit = 'bo.report.line.abstract'
     _description = "B&O report line sale"
 
-    sale_line_id = fields.Many2one('sale.order.line', string='Sale Order Line', required=True, readonly=True)
+    sale_line_id = fields.Many2one('sale.order.line', string='Sale Order Line', readonly=True)
     order_id = fields.Many2one('sale.order', string='Sale Order', related='sale_line_id.order_id')
 
     def prepare_api_json_values(self):
@@ -19,7 +19,7 @@ class BOReportLineSale(models.Model):
             date = self.date
             values.update({
                 "salesDate": date.strftime('%Y-%m-%d'),
-                "salesNo": self.order_id.name,
+                "salesNo": self.order_id.name if self.order_id else "",
                 "SoldQuantity": str(self.quantity),
             })
         return list_values

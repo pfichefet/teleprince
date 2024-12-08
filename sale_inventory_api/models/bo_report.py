@@ -17,7 +17,7 @@ class BOReport(models.Model):
     name = fields.Char(string='Name', required=True, readonly=True, default=_('New'))
     date_start = fields.Date(string='Start Date', required=True)
     date_end = fields.Date(string='End Date', required=True)
-    report_type_id = fields.Many2one("bo.report.type", string='Report Type', required=True)
+    report_type_id = fields.Many2one("bo.report.type", string='Report Type', required=True, ondelete="cascade")
     report_type_technical_name = fields.Char(string='Report Type Technical Name', related='report_type_id.technical_name')
     status = fields.Selection([('draft', 'Draft'), ('error', 'Error'), ('correct', 'Correct'), ('sent', 'Sent'), ('fail', 'Fail'), ('deleted', 'Deleted')],
                               string="Status",
@@ -31,7 +31,7 @@ class BOReport(models.Model):
     url = fields.Char(string="URL", readonly=True)
     upload_reference_guid = fields.Char(string="Upload Reference Guid", readonly=True)
     error_msg = fields.Text(string="Error", readonly=True)
-    company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company)
+    company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company, ondelete="cascade")
 
     @api.constrains('date_start', 'date_end')
     def no_date_overlap(self):

@@ -62,6 +62,7 @@
                                     <field name="lot_id" optional="show"/>
                                     <field name="quantity"/>
                                     <field name="uom_id" optional="hide"/>
+                                    <field name="name" optional="hide"/>
                                     <field name="error_msg" optional="hide"/>
                                 </tree>
                             </field>
@@ -78,6 +79,7 @@
                                     <field name="lot_id" optional="show"/>
                                     <field name="quantity"/>
                                     <field name="uom_id" optional="hide"/>
+                                    <field name="name" optional="hide"/>
                                     <field name="error_msg" optional="hide"/>
                                 </tree>
                             </field>

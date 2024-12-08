@@ -6,9 +6,9 @@ class BOReportLineQuant(models.Model):
     _inherit = 'bo.report.line.abstract'
     _description = "B&O report line quant"
 
-    quant_id = fields.Many2one('stock.quant', string='Stock Quant', required=True, readonly=True)
+    quant_id = fields.Many2one('stock.quant', string='Stock Quant', readonly=True)
     quant_lot_id = fields.Many2one('stock.lot', string='Lot Quant', related='quant_id.lot_id')
-    lot_id = fields.Many2one(domain="[('id', '=', quant_lot_id)]")  # Field define in abstract model add a domain
+    lot_id = fields.Many2one(domain="[('id', '=', quant_lot_id), ('product_id', '=', product_id)]")  # Field define in abstract model add a domain
 
     def prepare_api_json_values(self):
         """
@@ -20,15 +20,16 @@ class BOReportLineQuant(models.Model):
             date = self.date
             quant = self.quant_id
             inventory_status = 'Sellable'
-            if quant.is_display_product or not quant.product_id.sale_ok:
-                inventory_status = 'Display'
-            elif quant.reserved_quantity:
-                inventory_status = 'Reserved'
+            if quant:
+                if quant.is_display_product or not quant.product_id.sale_ok:
+                    inventory_status = 'Display'
+                elif quant.reserved_quantity:
+                    inventory_status = 'Reserved'
             values.update({
                 "inventoryDate": date.strftime('%Y-%m-%d'),
                 "inventorystatus": inventory_status,
-                "inventoryQuantity": str(quant.available_quantity),
-                "unitofmeasure": self.uom_id.name,
+                "inventoryQuantity": str(quant.available_quantity) if quant else str(0.0),
+                "unitofmeasure": self.uom_id.name if self.uom_id else "",
             })
             if inventory_status == 'Reserved':
                 reserved_values = values.copy()

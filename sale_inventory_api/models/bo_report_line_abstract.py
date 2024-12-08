@@ -13,9 +13,9 @@ class BOReportLineAbstract(models.AbstractModel):
     report_id = fields.Many2one("bo.report", string="B&O Report", readonly=True, ondelete='cascade')
     warehouse_id = fields.Many2one("stock.warehouse", string="Warehouse", readonly=True)
     date = fields.Date(string="Date", required=True, readonly=True)
-    product_id = fields.Many2one("product.product", string="Product", required=True, readonly=True)
+    product_id = fields.Many2one("product.product", string="Product", readonly=True)
     quantity = fields.Float(string="Quantity", readonly=True)
-    uom_id = fields.Many2one("uom.uom", string="UOM", required=True, readonly=True)
+    uom_id = fields.Many2one("uom.uom", string="UOM", readonly=True)
     lot_id = fields.Many2one("stock.lot", string="Lot", domain="[('product_id', '=', product_id)]")
     company_id = fields.Many2one('res.company', string='Company', related='report_id.company_id')
     error = fields.Boolean(string="Error", readonly=True)
@@ -29,8 +29,12 @@ class BOReportLineAbstract(models.AbstractModel):
         for line in self:
             if line.lot_id:
                 name = f"{line.product_id.display_name} - {line.lot_id.name}"
-            else:
+            elif line.product_id:
                 name = f"{line.product_id.display_name}"
+            elif line.name:
+                name = line.name
+            else:
+                name = line.report_id.name
             line.name = name
 
     def check_data_validity(self):
@@ -84,15 +88,16 @@ class BOReportLineAbstract(models.AbstractModel):
         """
         self.ensure_one()
         list_values = []
-        values = {
-            "storeId": str(self.warehouse_id.store_identifier) if self.warehouse_id and self.warehouse_id.store_identifier else str(self.company_id.b_and_o_api_store),
-            "sku": self.product_id.default_code,
-            "materialName": self.product_id.display_name,
-            "storeName": self.warehouse_id.name if self.warehouse_id and self.warehouse_id.store_identifier else self.company_id.name,
-        }
-        if self.lot_id:
-            values.update({
-                "serialNumber": self.lot_id.name,
-            })
-        list_values.append(values)
+        if self.product_id:
+            values = {
+                "storeId": str(self.warehouse_id.store_identifier) if self.warehouse_id and self.warehouse_id.store_identifier else str(self.company_id.b_and_o_api_store),
+                "sku": self.product_id.default_code,
+                "materialName": self.product_id.display_name,
+                "storeName": self.warehouse_id.name if self.warehouse_id and self.warehouse_id.store_identifier else self.company_id.name,
+            }
+            if self.lot_id:
+                values.update({
+                    "serialNumber": self.lot_id.name,
+                })
+            list_values.append(values)
         return list_values
