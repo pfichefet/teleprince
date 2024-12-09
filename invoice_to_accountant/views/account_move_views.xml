@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_invoice_view_tree" model="ir.ui.view">
+        <field name="name">account.move.tree.inherit.accountant</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="to_check" position="after">
+                <field name="send_to_accountant" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_invoice_view_form" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.accountant</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="to_check" position="after">
+                <field name="send_to_accountant" attrs="{'invisible': [('move_type', 'not in', ['in_invoice', 'out_invoice', 'in_refund', 'out_refund'])]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_server_email_invoice_to_accountant" model="ir.actions.server">
+        <field name="name">Send Invoices To Accountant</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="binding_model_id" ref="model_account_move" />
+        <field name="state">code</field>
+        <field name="code">records.send_invoice_to_accountant()</field>
+    </record>
+</odoo>
