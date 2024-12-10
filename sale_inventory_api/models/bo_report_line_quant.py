@@ -8,32 +8,20 @@ class BOReportLineQuant(models.Model):
 
     quant_id = fields.Many2one('stock.quant', string='Stock Quant', readonly=True)
     quant_lot_id = fields.Many2one('stock.lot', string='Lot Quant', related='quant_id.lot_id')
-    lot_id = fields.Many2one(domain="[('id', '=', quant_lot_id), ('product_id', '=', product_id)]")  # Field define in abstract model add a domain
+    lot_id = fields.Many2one(domain="[('id', '=', quant_lot_id), ('product_id', '=', product_id)]") # Field define in abstract model add a domain
+    inventory_status = fields.Char(string='Inventory Status', required=True)
 
     def prepare_api_json_values(self):
         """
         Override method
         Add parameters for the inventory report.
         """
-        list_values = super().prepare_api_json_values()
-        for values in list_values:
-            date = self.date
-            quant = self.quant_id
-            inventory_status = 'Sellable'
-            if quant:
-                if quant.is_display_product or not quant.product_id.sale_ok:
-                    inventory_status = 'Display'
-                elif quant.reserved_quantity:
-                    inventory_status = 'Reserved'
-            values.update({
-                "inventoryDate": date.strftime('%Y-%m-%d'),
-                "inventorystatus": inventory_status,
-                "inventoryQuantity": str(quant.available_quantity) if quant else str(0.0),
-                "unitofmeasure": self.uom_id.name if self.uom_id else "",
-            })
-            if inventory_status == 'Reserved':
-                reserved_values = values.copy()
-                reserved_values.update({
-                    "inventoryQuantity": str(quant.reserved_quantity),
-                })
-        return list_values
+        values = super().prepare_api_json_values()
+        date = self.date
+        values.update({
+            "inventoryDate": date.strftime('%Y-%m-%d'),
+            "inventorystatus": self.inventory_status,
+            "inventoryQuantity": str(self.quantity),
+            "unitofmeasure": self.uom_id.name if self.uom_id else "",
+        })
+        return values

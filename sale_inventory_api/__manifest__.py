@@ -31,6 +31,7 @@ Sent sale and inventory report to B&O through REST API.
         'views/res_partner_views.xml',
         'views/product_template_views.xml',
         'views/sale_order_views.xml',
+        'views/stock_location_views.xml',
         'views/menu.xml',
     ],
     'price': 0.0,

@@ -87,7 +87,7 @@ class BOReportLineAbstract(models.AbstractModel):
         through the REST API.
         """
         self.ensure_one()
-        list_values = []
+        values = {}
         if self.product_id:
             values = {
                 "storeId": str(self.warehouse_id.store_identifier) if self.warehouse_id and self.warehouse_id.store_identifier else str(self.company_id.b_and_o_api_store),
@@ -99,5 +99,4 @@ class BOReportLineAbstract(models.AbstractModel):
                 values.update({
                     "serialNumber": self.lot_id.name,
                 })
-            list_values.append(values)
-        return list_values
+        return values

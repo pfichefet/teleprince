@@ -80,7 +80,10 @@ class BOReport(models.Model):
         Generate data to send to B&O based on the sales.
         """
         self.ensure_one()
+        # CLEAR LINES
+        list_values = [Command.clear()]
         bo_report_line = self.env['bo.report.line.sale'].search([('report_id', '!=', self.id)])
+        # SALE ORDER
         sale_lines_in_report = bo_report_line.sale_line_id
         sale_order_lines = self.env['sale.order.line'].search([
             ('order_id.state', 'in', ['sale', 'done']),
@@ -92,10 +95,25 @@ class BOReport(models.Model):
             ('invoice_date', '<=', self.date_end),
             ('id', 'not in', sale_lines_in_report.ids),
             ('company_id', '=', self.company_id.id)])
-        list_values = [Command.clear()]
         for sale_line in sale_order_lines:
             sn_values = sale_line.prepare_bo_report_line(self)
             list_values.extend([Command.create(values) for values in sn_values])
+        # POS ORDER
+        pos_order_line_in_report = bo_report_line.pos_order_line_id
+        pos_order_lines = self.env['pos.order.line'].search([
+            ('order_id.state', 'in', ['invoiced', 'done']),
+            ('product_id', '!=', False),
+            ('product_id.is_api_b_and_o_compliant', '=', True),
+            ('qty', '>', 0),
+            ('order_id.date_order', '!=', False),
+            ('order_id.date_order', '>=', self.date_start),
+            ('order_id.date_order', '<=', self.date_end),
+            ('id', 'not in', pos_order_line_in_report.ids),
+            ('company_id', '=', self.company_id.id)
+        ])
+        for pos_line in pos_order_lines:
+            values = pos_line.prepare_bo_report_line(self)
+            list_values.append(Command.create(values))
         self.sudo().write({"report_line_sale_ids": list_values})
 
     def generate_inventory_data(self):
@@ -111,8 +129,8 @@ class BOReport(models.Model):
                                                  ('location_id.usage', 'in', ['internal', 'transit'])])
         list_values = [Command.clear()]
         for quant in quants:
-            values = quant.prepare_bo_report_line(self)
-            list_values.append(Command.create(values))
+            quant_list_values = quant.prepare_bo_report_line(self)
+            list_values.extend([Command.create(values) for values in quant_list_values])
         self.sudo().write({"report_line_quant_ids": list_values})
 
     def generate_data(self):
@@ -155,7 +173,9 @@ class BOReport(models.Model):
         elif self.report_type_technical_name == "Sell-Out Inventory":
             lines = self.report_line_quant_ids
         for line in lines:
-            data.extend(line.prepare_api_json_values())
+            values = line.prepare_api_json_values()
+            if values:
+                data.append(values)
         if data:
             body.update({"data": data})
         else:
