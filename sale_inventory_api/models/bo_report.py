@@ -278,7 +278,7 @@ class BOReport(models.Model):
                     # Save the date we reach, this way we will start from this point next time.
                     company.sudo().b_and_o_api_start_date = current_date
             elif bo_report_type_name == "Sell-Out Inventory":
-                today = fields.Date.today()
+                today = fields.Date.today() - timedelta(days=company.b_and_o_api_time_delta)
                 days_until_sunday = 6 - today.weekday()
                 end_of_week = today + timedelta(days=days_until_sunday)
                 start_week = today - timedelta(days=today.weekday())
