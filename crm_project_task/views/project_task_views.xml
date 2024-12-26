@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_task_view_form" model="ir.ui.view">
+        <field name="name">project.task.view.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="is_pre_visit_task" invisible="1"/>
+                <button string="Pre-Visit Done" name="pre_visit_done" type="object" class="btn btn-secondary" data-hotkey="p"
+                        attrs="{'invisible': [('is_pre_visit_task', '=', False)]}" title="Mark the pre-visit as done."/>
+            </xpath>
+            <xpath expr="//page[@name='extra_info']/group/group" position="inside">
+                <field name="opportunity_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_enterprise_task_view_form" model="ir.ui.view">
+        <field name="name">project.enterprise.task.view.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project_enterprise.project_task_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='planned_date_begin']" position="attributes">
+                <attribute name="attrs">
+                    {}
+                </attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('w-100')]" position="attributes">
+                <attribute name="attrs">
+                    {}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

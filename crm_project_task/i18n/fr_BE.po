@@ -1,0 +1,149 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_project_task
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-26 12:57+0000\n"
+"PO-Revision-Date: 2024-12-26 14:03+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: crm_project_task
+#: model_terms:ir.ui.view,arch_db:crm_project_task.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Pre-Visit Project</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"o_form_label\">Projet de Pré-Visite</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#. module: crm_project_task
+#: model:ir.model,name:crm_project_task.model_crm_stage
+msgid "CRM Stages"
+msgstr "étapes CRM"
+
+#. module: crm_project_task
+#: model:ir.model,name:crm_project_task.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: crm_project_task
+#: model:ir.model,name:crm_project_task.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: crm_project_task
+#: model_terms:ir.ui.view,arch_db:crm_project_task.crm_lead_view_form
+msgid "Create Pre-Visit Task"
+msgstr "Créer une tâche de pré-visite"
+
+#. module: crm_project_task
+#: model_terms:ir.ui.view,arch_db:crm_project_task.crm_lead_view_form
+msgid "Create a pre-visit task"
+msgstr "Créer une tâche de pré-visite"
+
+#. module: crm_project_task
+#: model:ir.model.fields,field_description:crm_project_task.field_project_task__is_pre_visit_task
+msgid "Is Pre-Visit Task"
+msgstr "Est une tâche de pré-visite"
+
+#. module: crm_project_task
+#: model:ir.model,name:crm_project_task.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Piste/opportunité"
+
+#. module: crm_project_task
+#: model_terms:ir.ui.view,arch_db:crm_project_task.project_task_view_form
+msgid "Mark the pre-visit as done."
+msgstr "Marquer la pré-visite comme terminée."
+
+#. module: crm_project_task
+#: model:ir.model.fields,field_description:crm_project_task.field_project_task__opportunity_id
+msgid "Opportunity"
+msgstr "Opportunité"
+
+#. module: crm_project_task
+#. odoo-python
+#: code:addons/crm_project_task/models/crm_lead.py:0
+#, python-format
+msgid "Please set a pre-visit project in the CRM settings."
+msgstr "SVP définissez un projet de pré-visite dans la configuration du CRM."
+
+#. module: crm_project_task
+#: model_terms:ir.ui.view,arch_db:crm_project_task.project_task_view_form
+msgid "Pre-Visit Done"
+msgstr "Pré-Visite Terminée"
+
+#. module: crm_project_task
+#: model:ir.model.fields,field_description:crm_project_task.field_crm_stage__is_pre_visit_done_stage
+msgid "Pre-Visit Done Stage"
+msgstr "Étape de clôture d'une pré-visite"
+
+#. module: crm_project_task
+#: model:ir.model.fields,field_description:crm_project_task.field_res_company__pre_visit_project_id
+#: model:ir.model.fields,field_description:crm_project_task.field_res_config_settings__pre_visit_project_id
+msgid "Pre-Visit Project"
+msgstr "Projet de Pré-Visite"
+
+#. module: crm_project_task
+#: model:ir.model.fields,field_description:crm_project_task.field_crm_stage__is_pre_visit_stage
+msgid "Pre-Visit Stage"
+msgstr "Étape de Pré-Visite"
+
+#. module: crm_project_task
+#. odoo-python
+#: code:addons/crm_project_task/models/crm_lead.py:0
+#, python-format
+msgid "Pre-Visit Task"
+msgstr "Tâche de Pré-Visite"
+
+#. module: crm_project_task
+#. odoo-python
+#: code:addons/crm_project_task/models/crm_lead.py:0
+#, python-format
+msgid "Pre-Visit: %s"
+msgstr "Pré-Visite: %s"
+
+#. module: crm_project_task
+#: model_terms:ir.ui.view,arch_db:crm_project_task.res_config_settings_view_form
+msgid "Project"
+msgstr "Projet"
+
+#. module: crm_project_task
+#: model_terms:ir.ui.view,arch_db:crm_project_task.res_config_settings_view_form
+msgid "Project in which pre-visit task are created"
+msgstr "Projet dans lequel les tâche de pré-visite sont créées"
+
+#. module: crm_project_task
+#: model:ir.model.fields,help:crm_project_task.field_crm_stage__is_pre_visit_stage
+msgid "Stage when the pre-visit has been scheduled."
+msgstr "Étape pour notifier qu'une pré-visite à été prévue."
+
+#. module: crm_project_task
+#: model:ir.model.fields,help:crm_project_task.field_crm_stage__is_pre_visit_done_stage
+msgid "Stage when the pre-visit stage has been done."
+msgstr "Étape pour notifier que la pré-visite est terminée."
+
+#. module: crm_project_task
+#: model:ir.model,name:crm_project_task.model_project_task
+msgid "Task"
+msgstr "Tâche"
+
+#. module: crm_project_task
+#. odoo-python
+#: code:addons/crm_project_task/models/crm_lead.py:0
+#: model:ir.model.fields,field_description:crm_project_task.field_crm_lead__task_ids
+#: model:ir.model.fields,field_description:crm_project_task.field_crm_lead__tasks_count
+#: model_terms:ir.ui.view,arch_db:crm_project_task.crm_lead_view_form
+#, python-format
+msgid "Tasks"
+msgstr "Tâches"
