@@ -33,4 +33,20 @@
             </xpath>
         </field>
     </record>
+
+    <record id="project_task_kanban_fsm_stage" model="ir.ui.view">
+        <field name="name">project.task.kanban.fsm.stage</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="industry_fsm.project_task_action_fsm_no_quick_create"/>
+        <field name="arch" type="xml">
+            <field name="color" position="after">
+                <field name="is_fold"/>
+            </field>
+            <xpath expr="//div[hasclass('o_kanban_record_body')]/field[@name='tag_ids']" position="after">
+                <p>
+                    <field name="stage_id" widget="badge" decoration-success="is_fold"/>
+                </p>
+            </xpath>
+        </field>
+    </record>
 </odoo>

@@ -4,6 +4,7 @@ from odoo import fields, models
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
+    is_fold = fields.Boolean(string="Folded Stage", related="stage_id.fold")
     opportunity_id = fields.Many2one("crm.lead", string="Opportunity")
     is_pre_visit_task = fields.Boolean(string="Is Pre-Visit Task", readonly=True)
 
