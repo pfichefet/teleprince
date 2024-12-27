@@ -5,11 +5,6 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
-                <field name="is_pre_visit_task" invisible="1"/>
-                <button string="Pre-Visit Done" name="pre_visit_done" type="object" class="btn btn-secondary" data-hotkey="p"
-                        attrs="{'invisible': [('is_pre_visit_task', '=', False)]}" title="Mark the pre-visit as done."/>
-            </xpath>
             <xpath expr="//page[@name='extra_info']/group/group" position="inside">
                 <field name="opportunity_id"/>
             </xpath>
@@ -38,6 +33,22 @@
         <field name="name">project.task.kanban.fsm.stage</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="industry_fsm.project_task_action_fsm_no_quick_create"/>
+        <field name="arch" type="xml">
+            <field name="color" position="after">
+                <field name="is_fold"/>
+            </field>
+            <xpath expr="//div[hasclass('o_kanban_record_body')]/field[@name='tag_ids']" position="after">
+                <p>
+                    <field name="stage_id" widget="badge" decoration-success="is_fold"/>
+                </p>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_my_task_kanban_stage" model="ir.ui.view">
+        <field name="name">project.my.task.kanban.stage</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban_inherit_my_task"/>
         <field name="arch" type="xml">
             <field name="color" position="after">
                 <field name="is_fold"/>

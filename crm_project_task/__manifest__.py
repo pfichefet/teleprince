@@ -11,7 +11,7 @@ CRM pre-visit Task
 Allow to create a pre-visit task that is linked to an opportunity.
     """,
     'category': 'Sales/CRM',
-    'depends': ['crm', 'project_enterprise'],
+    'depends': ['sale_crm', 'project_enterprise', 'industry_fsm'],
     'external_dependencies': {
     },
     'data': [
