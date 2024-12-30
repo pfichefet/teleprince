@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_warehouse_inherit_fsm_route" model="ir.ui.view">
+        <field name="name">stock.warehouse.form.inherit.fsm.route</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='warehouse_config']/group" position="inside">
+                <group string="Field Service" groups="industry_fsm.group_fsm_manager">
+                    <field name="fsm_route_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
