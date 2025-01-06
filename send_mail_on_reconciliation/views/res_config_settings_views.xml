@@ -13,7 +13,8 @@
                     <div class="o_setting_right_pane">
                         <label for="send_mail_invoice_reconciliation"/>
                         <div class="text-muted">
-                            Let your customers pay their invoices online
+                            As soon as a customer invoice is marked as paid, an email is sent to inform the customer that their payment has been received.
+                            However, emails are not sent for invoices generated through the point-of-sale application.
                         </div>
                         <field name="invoice_reconciliation_mail_template_id" attrs="{'required': [('send_mail_invoice_reconciliation', '=', True)]}"/>
                     </div>
