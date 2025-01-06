@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-04 13:54+0000\n"
-"PO-Revision-Date: 2025-01-04 14:57+0100\n"
+"POT-Creation-Date: 2025-01-06 08:39+0000\n"
+"PO-Revision-Date: 2025-01-06 09:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_BE\n"
@@ -21,27 +21,33 @@ msgstr ""
 #: model:mail.template,body_html:send_mail_on_reconciliation.email_template_invoice_paid
 msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p style=\"box-sizing:border-box;margin: 0px; padding: "
-"0px; font-size: 13px;\">Dear customer,&nbsp;</p><p style=\"box-sizing:"
-"border-box;margin: 0px; padding: 0px; font-size: 13px;\">We would like to "
-"thank you for your payment&nbsp;for <span style=\"font-weight:bold;\" t-out="
-"\"object.name or ''\"></span>,\n"
-"                        Please find your paid invoice in the attached."
-"<br>We express our gratitude for the trust you place in us.<br><br>Best "
-"regards,&nbsp;<br>The Bang&amp;Olufsen Brussels &amp; Liège Team</p></div>\n"
+"                    <p style=\"box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;\">Dear customer,"
+"&nbsp;</p><p style=\"box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;\">We would like to thank you "
+"for your payment&nbsp;for <span style=\"font-weight:bold;\" t-out=\"object.name or ''\"></span>,\n"
+"                        Please find your paid invoice in the attached.<br>We express our gratitude for the trust you "
+"place in us.<br><br>Best regards,&nbsp;<br>The Bang&amp;Olufsen Brussels &amp; Liège Team</p></div>\n"
 "            "
 msgstr ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p style=\"box-sizing:border-box;margin: 0px; padding: "
-"0px; font-size: 13px;\">Chère cliente, cher client,&nbsp;</p><p style=\"box-"
-"sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;\">Nous vous "
-"remercions pour votre paiement&nbsp;for <span style=\"font-weight:bold;\" t-"
-"out=\"object.name or ''\"></span>,\n"
-"                        Veuillez trouver votre facture acquittée en pièce "
-"jointe.<br>Nous vous exprimons notre gratitude pour la confiance que vous "
-"nous accordez.<br><br>Cordialement,&nbsp;<br>L'équipe Bang&amp;Olufsen "
-"Bruxelles &amp; Liège</p></div>\n"
+"                    <p style=\"box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;\">Chère cliente, "
+"cher client,&nbsp;</p><p style=\"box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;\">Nous vous "
+"remercions pour votre paiement&nbsp;for <span style=\"font-weight:bold;\" t-out=\"object.name or ''\"></span>,\n"
+"                        Veuillez trouver votre facture acquittée en pièce jointe.<br>Nous vous exprimons notre "
+"gratitude pour la confiance que vous nous accordez.<br><br>Cordialement,&nbsp;<br>L'équipe Bang&amp;Olufsen Bruxelles "
+"&amp; Liège</p></div>\n"
 "            "
+
+#. module: send_mail_on_reconciliation
+#: model_terms:ir.ui.view,arch_db:send_mail_on_reconciliation.res_config_settings_view_form
+msgid ""
+"As soon as a customer invoice is marked as paid, an email is sent to inform the customer that their payment has been "
+"received.\n"
+"                            However, emails are not sent for invoices generated through the point-of-sale application."
+msgstr ""
+"Dès que la facture d'un client est marquée comme payée, un courriel est envoyé pour informer le client que son "
+"paiement a été reçu.\n"
+"                            Toutefois, aucun courriel n'est envoyé pour les factures générées par l'application point "
+"de vente."
 
 #. module: send_mail_on_reconciliation
 #: model:ir.model,name:send_mail_on_reconciliation.model_res_company
@@ -60,20 +66,13 @@ msgstr "Facture: Confirmation de Paiement"
 
 #. module: send_mail_on_reconciliation
 #: model:mail.template,report_name:send_mail_on_reconciliation.email_template_invoice_paid
-msgid ""
-"Invoice_{{ (object.name or '').replace('/','_') }}{{ object.state == "
-"'draft' and '_draft' or '' }}"
+msgid "Invoice_{{ (object.name or '').replace('/','_') }}{{ object.state == 'draft' and '_draft' or '' }}"
 msgstr ""
 
 #. module: send_mail_on_reconciliation
 #: model:ir.model,name:send_mail_on_reconciliation.model_account_move
 msgid "Journal Entry"
 msgstr "Pièce comptable"
-
-#. module: send_mail_on_reconciliation
-#: model_terms:ir.ui.view,arch_db:send_mail_on_reconciliation.res_config_settings_view_form
-msgid "Let your customers pay their invoices online"
-msgstr "Permettez à vos clients de payer leurs factures en ligne"
 
 #. module: send_mail_on_reconciliation
 #: model:ir.model.fields,field_description:send_mail_on_reconciliation.field_res_company__invoice_reconciliation_mail_template_id
