@@ -1,6 +1,6 @@
 {
     'name': 'Send Email Automatically on Reconciliation',
-    'version': '1.0.0',
+    'version': '2.0.0',
     'summary': 'Send Email Automatically on Reconciliation',
     'sequence': 10,
     'author': 'The Fish Consulting',
