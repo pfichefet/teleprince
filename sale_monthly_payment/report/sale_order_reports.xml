@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit_monthly_payment" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="after">
+            <div id="div_monthly_financing_payment" t-if="doc.with_financing">
+                <table class="table table-sm o_main_table table-borderless mt-4">
+                    <tbody class="sale_tbody">
+                        <tr>
+                            <td name="td_finaning">
+                                Monthly Financing Payment
+                            </td>
+                            <td name="td_monthly_financing_payment" class="text-end">
+                                <span t-field="doc.monthly_financing_payment"/>
+                                <span>per month</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </xpath>
+    </template>
+</odoo>

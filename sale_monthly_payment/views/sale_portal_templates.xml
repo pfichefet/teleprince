@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_order_portal_content_inherit_monthly_financing_payment"
+        name="Monthly Financing Payments"
+        inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//section[@id='details']" position="before">
+            <section id="monthly_financing_payment" t-if="sale_order.with_financing">
+                <h3 id="details">Monthly Financing Payment</h3>
+                <div class="table-responsive">
+                    <table t-att-data-order-id="sale_order.id" t-att-data-token="sale_order.access_token" class="table table-sm" id="sales_order_table">
+                        <tbody class="sale_tbody">
+                            <td name="td_monthly_financing_payment" class="text-center" style="background-color:#F8F9FA;">
+                                <strong t-field="sale_order.monthly_financing_payment"/>
+                                <strong>per month</strong>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+</odoo>
