@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_purchase_addons
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-04 11:09+0000\n"
+"PO-Revision-Date: 2025-02-04 12:09+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: sale_purchase_addons
+#: model:ir.model.fields,field_description:sale_purchase_addons.field_purchase_order__sale_partner_id
+msgid "Customer"
+msgstr "Client"
+
+#. module: sale_purchase_addons
+#: model:ir.model.fields,help:sale_purchase_addons.field_purchase_order__sale_partner_id
+msgid "Customer of the main sale order"
+msgstr "Client de la commande de vente principale"
+
+#. module: sale_purchase_addons
+#: model:ir.model,name:sale_purchase_addons.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
