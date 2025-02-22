@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='description']" position="after">
                 <field name="project_id"/>
+                <field name="task_id"/>
             </xpath>
         </field>
     </record>
@@ -18,6 +19,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_id']" position="before">
                 <field name="project_id"/>
+                <field name="task_id"/>
             </xpath>
         </field>
     </record>
