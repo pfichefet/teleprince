@@ -1,23 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="res_company_form_inherit_ext" model="ir.ui.view">
-            <field name="name">res.company.form.inherit.ext</field>
-            <field name="model">res.company</field>
-            <field name="inherit_id" ref="base.view_company_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//notebook" position="inside">
-                    <page string="Other Info" name="other_info">
+    <record id="res_company_form_inherit_ext" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.ext</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Other Info" name="other_info">
+                    <group>
                         <group>
-                            <group>
-                                <field name="b_and_o_logo" widget="image" class="oe_avatar"/>
-                            </group>
-                            <group>
-                                <field name="teleprince_logo" widget="image" class="oe_avatar"/>
-                            </group>
+                            <field name="b_and_o_logo" widget="image" class="oe_avatar"/>
                         </group>
-                    </page>
-                </xpath>
-            </field>
-        </record>
-    </data>
+                        <group>
+                            <field name="teleprince_logo" widget="image" class="oe_avatar"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
 </odoo>

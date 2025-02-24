@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-
-from odoo import models, fields, _
+from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
