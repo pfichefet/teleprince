@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.view_account_journal_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='advanced_settings']/group" position="inside">
-                <group name="email_accountant" string="Email To Accountant" attrs="{'invisible': [('type', 'not in', ['sale', 'purchase'])]}">
+                <group name="email_accountant" string="Email To Accountant" invisible="type not in ['sale', 'purchase']">
                     <field name="email_accountant_template_id"/>
                     <field name="refund_email_accountant_template_id"/>
                 </group>

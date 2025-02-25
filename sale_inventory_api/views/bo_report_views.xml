@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- Tree Views -->
-    <record id="bo_report_view_tree" model="ir.ui.view">
-        <field name="name">b.and.o.report.view.tree</field>
+    <!-- list Views -->
+    <record id="bo_report_view_list" model="ir.ui.view">
+        <field name="name">b.and.o.report.view.list</field>
         <field name="model">bo.report</field>
         <field name="arch" type="xml">
-            <tree string="B&amp;O Reports" decoration-info="(status == 'correct')" decoration-warning="(status == 'error')" decoration-danger="(status == 'fail')" decoration-success="(status == 'sent')" decoration-muted="(status == 'deleted')">
+            <list string="B&amp;O Reports" decoration-info="(status == 'correct')" decoration-warning="(status == 'error')" decoration-danger="(status == 'fail')" decoration-success="(status == 'sent')" decoration-muted="(status == 'deleted')">
                 <field name="name"/>
                 <field name="report_type_id"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
                 <field name="status"/>
                 <field name="company_id" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -25,11 +25,11 @@
             <form string="B&amp;O Report">
                 <field name="report_type_technical_name" invisible="1"/>
                 <header>
-                    <button name="generate_data" string="Reload" type="object" attrs="{'invisible': [('status', 'in', ['sent', 'deleted'])]}"/>
-                    <button name="check_data_validity" string="Test Data Validity" type="object" attrs="{'invisible': [('status', 'in', ['sent', 'deleted'])]}"/>
-                    <button name="send_data" string="Send" type="object" attrs="{'invisible': ['|', ('status', '!=', 'correct'), ('upload_reference_guid', '!=', False)]}"/>
-                    <button name="delete_data" string="Delete" type="object" attrs="{'invisible': ['|', ('status', 'not in', ['sent', 'fail']), ('upload_reference_guid', '=', False)]}"/>
-                    <button name="reset_to_draft" string="Reset" type="object" attrs="{'invisible': [('status', '!=', 'deleted')]}"/>
+                    <button name="generate_data" string="Reload" type="object" invisible="status in ['sent', 'deleted']"/>
+                    <button name="check_data_validity" string="Test Data Validity" type="object" invisible="status in ['sent', 'deleted']"/>
+                    <button name="send_data" string="Send" type="object" invisible="status !=' correct' or not upload_reference_guid"/>
+                    <button name="delete_data" string="Delete" type="object" invisible="status not in ['sent', 'fail'] or not upload_reference_guid"/>
+                    <button name="reset_to_draft" string="Reset" type="object" invisible="status != 'deleted'"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,correct,sent"/>
                 </header>
                 <sheet>
@@ -39,21 +39,21 @@
                             <field name="name" readonly="1"/>
                         </h1>
                     </div>
-                    <group name="parameters" attrs="{'readonly': [('status', '=', 'sent')]}">
+                    <group name="parameters" readonly="status == 'sent'">
                         <group name="date">
                             <field name="date_start"/>
                             <field name="date_end"/>
                         </group>
-                        <group name="details" attrs="{'readonly': [('status', '=', 'sent')]}">
+                        <group name="details" readonly="status == 'sent'">
                             <field name="report_type_id"/>
                             <field name="company_id"/>
                             <field name="upload_reference_guid"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Sell-Out Sales" name="line_sale" attrs="{'invisible': [('report_type_technical_name', '!=', 'Sell-Out Sales')], 'readonly': [('status', '=', 'sent')]}">
+                        <page string="Sell-Out Sales" name="line_sale" invisible="report_type_technical_name != 'Sell-Out Sales'" readonly="status == 'sent'">
                             <field name="report_line_sale_ids">
-                                <tree string="Sell-Out Sales" decoration-warning="error" editable="bottom" create="0">
+                                <list string="Sell-Out Sales" decoration-warning="error" editable="bottom" create="0">
                                     <field name="error" invisible="1"/>
                                     <field name="warehouse_id" optional="hide"/>
                                     <field name="date"/>
@@ -65,12 +65,12 @@
                                     <field name="uom_id" optional="hide"/>
                                     <field name="name" optional="hide"/>
                                     <field name="error_msg" optional="hide"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
-                        <page string="Sell-Out Inventory" name="line_inventory" attrs="{'invisible': [('report_type_technical_name', '!=', 'Sell-Out Inventory')], 'readonly': [('status', '=', 'sent')]}">
+                        <page string="Sell-Out Inventory" name="line_inventory" invisible="report_type_technical_name != 'Sell-Out Inventory'" readonly="status == 'sent'">
                             <field name="report_line_quant_ids">
-                                <tree string="Sell-Out Inventory" decoration-warning="error" editable="bottom" create="0">
+                                <list string="Sell-Out Inventory" decoration-warning="error" editable="bottom" create="0">
                                     <field name="error" invisible="1"/>
                                     <field name="quant_lot_id" invisible="1"/>
                                     <field name="warehouse_id" optional="hide"/>
@@ -83,10 +83,10 @@
                                     <field name="uom_id" optional="hide"/>
                                     <field name="name" optional="hide"/>
                                     <field name="error_msg" optional="hide"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
-                        <page string="Erros" name="send_error" attrs="{'invisible': [('status', '!=', 'fail')]}">
+                        <page string="Erros" name="send_error" invisible="status != 'fail'">
                             <group name="send_error_group">
                                 <field name="url"/>
                                 <field name="error_msg"/>
@@ -133,7 +133,7 @@
     <record id="bo_report_action" model="ir.actions.act_window">
         <field name="name">B&amp;O Reports</field>
         <field name="res_model">bo.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="bo_report_view_search"/>
     </record>
 

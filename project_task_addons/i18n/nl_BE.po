@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_task_addons
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-25 09:52+0000\n"
+"PO-Revision-Date: 2025-02-25 10:52+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: project_task_addons
+#: model:ir.model.fields,field_description:project_task_addons.field_project_task__project_partner_id
+msgid "Project Partner"
+msgstr "Projectpartner"
+
+#. module: project_task_addons
+#: model:ir.model,name:project_task_addons.model_project_task
+msgid "Task"
+msgstr "Taak"

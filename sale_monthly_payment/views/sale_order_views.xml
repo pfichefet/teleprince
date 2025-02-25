@@ -8,7 +8,7 @@
             <xpath expr="//page[@name='other_information']/group" position="inside">
                 <group name="group_monthly_financing_payment" string="Financing">
                     <field name="with_financing"/>
-                    <field name="monthly_financing_payment" attrs="{'invisible': [('with_financing', '=', False)]}"/>
+                    <field name="monthly_financing_payment" invisible="not with_financing"/>
                 </group>
             </xpath>
         </field>

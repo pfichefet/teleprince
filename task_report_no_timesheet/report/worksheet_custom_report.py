@@ -6,6 +6,7 @@ from odoo import api, models
 
 class TaskCustomReportNoTS(models.AbstractModel):
     _name = 'report.task_report_no_timesheet.worksheet_custom_no_ts'
+    _description = 'Worksheet Custom Report Without Timesheet'
 
     @api.model
     def _get_report_values(self, docids, data=None):

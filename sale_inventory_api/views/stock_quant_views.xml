@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_stock_quant_tree_inventory_editable_inherit_sale_inventory_api" model="ir.ui.view">
-        <field name="name">stock.quant.inventory.tree.editable.inheritsale.inventory.apit</field>
+    <record id="view_stock_quant_list_inventory_editable_inherit_sale_inventory_api" model="ir.ui.view">
+        <field name="name">stock.quant.inventory.list.editable.inheritsale.inventory.api</field>
         <field name="model">stock.quant</field>
         <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable"/>
         <field name="arch" type="xml">

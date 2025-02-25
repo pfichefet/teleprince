@@ -7,20 +7,18 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 10:54+0000\n"
-"PO-Revision-Date: 2025-02-25 11:54+0100\n"
+"PO-Revision-Date: 2025-02-25 10:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.5\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
 msgid "<span class=\"o_form_label\">B&amp;O Report</span>"
-msgstr "<span class=\"o_form_label\">Rapport B&amp;O</span>"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_config_settings__b_and_o_api_id
@@ -30,7 +28,7 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
 msgid "API ID used in the request to be authenticated."
-msgstr "ID de l'API utilisé dans la demande d'authentification."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_config_settings__b_and_o_api_key
@@ -40,7 +38,7 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
 msgid "API Key used in the request to be authenticated."
-msgstr "Clé API utilisée dans la demande d'authentification."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
@@ -54,8 +52,9 @@ msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
-msgid "API Store ID used in the request (only if not defined on the warehouse)."
-msgstr "ID du magasin API utilisé dans la demande (uniquement s'il n'est pas défini dans l'entrepôt)."
+msgid ""
+"API Store ID used in the request (only if not defined on the warehouse)."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__message_needaction
@@ -65,12 +64,12 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
 msgid "Activate the Rest API"
-msgstr "Activate the B&O Rest API"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_type__active
 msgid "Active"
-msgstr "Actif"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__activity_ids
@@ -95,13 +94,13 @@ msgstr ""
 #. module: sale_inventory_api
 #: model:res.groups,name:sale_inventory_api.b_and_o_group_manager
 msgid "Administrator"
-msgstr "Administrateur"
+msgstr ""
 
 #. module: sale_inventory_api
 #. odoo-python
 #: code:addons/sale_inventory_api/models/bo_report.py:0
 msgid "At least two B&O reports overlap each other. %s"
-msgstr "Au moins deux rapports B&O se chevauchent. %s"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__message_attachment_count
@@ -123,7 +122,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_inventory_api/models/res_company.py:0
 msgid "B&O API Environment is not supported (company: %s)"
-msgstr "L'environnement API B&O n'est pas pris en charge (société : %s)"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_company__b_and_o_api_id
@@ -134,7 +133,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_inventory_api/models/bo_report.py:0
 msgid "B&O API ID is missing for company %s."
-msgstr "L'ID API B&O est manquant pour la société %s."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_company__b_and_o_api_key
@@ -145,7 +144,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_company__b_and_o_api_start_date
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_config_settings__b_and_o_api_start_date
 msgid "B&O API Start Date"
-msgstr "Date de début de l'API B&O"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_company__b_and_o_api_store
@@ -156,7 +155,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_inventory_api/models/res_company.py:0
 msgid "B&O API URL is not set"
-msgstr "L'URL de l'API B&O n'est pas définie"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_config_settings__b_and_o_api_active
@@ -167,13 +166,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_inventory_api/API/post_sale_inventory.py:0
 msgid "B&O API is not actviated for this company %s."
-msgstr "B&O API n'est pas actif pour cette entreprise %s."
+msgstr ""
 
 #. module: sale_inventory_api
 #. odoo-python
 #: code:addons/sale_inventory_api/API/post_sale_inventory.py:0
 msgid "B&O API key is missing for company %s."
-msgstr "La clé API B&O est manquante pour la société %s."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_company__b_and_o_api_active
@@ -202,12 +201,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__report_id
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
 msgid "B&O Report"
-msgstr "Rapport B&O"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.actions.act_window,name:sale_inventory_api.bo_report_type_action
 msgid "B&O Report Types"
-msgstr "Types de rapports sur les B&O"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.actions.act_window,name:sale_inventory_api.bo_report_action
@@ -248,12 +247,12 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
 msgid "Base URL used to send API REST requests"
-msgstr "URL de base utilisée pour envoyer des requêtes API REST"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model,name:sale_inventory_api.model_res_company
 msgid "Companies"
-msgstr "Sociétés"
+msgstr "Bedrijven"
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__company_id
@@ -262,12 +261,12 @@ msgstr "Sociétés"
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__company_id
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Company"
-msgstr "Entreprise"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model,name:sale_inventory_api.model_res_config_settings
 msgid "Config Settings"
-msgstr "Paramètres de configuration"
+msgstr "Configuratie-instellingen"
 
 #. module: sale_inventory_api
 #: model:ir.ui.menu,name:sale_inventory_api.b_and_o_api_menu_config
@@ -314,10 +313,10 @@ msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
-msgid "Defined the environment we used to send data, B&amp;O will consider only request send to a Production environment."
+msgid ""
+"Defined the environment we used to send data, B&amp;O will consider only "
+"request send to a Production environment."
 msgstr ""
-"Défini l'environnement utilisé pour envoyer les données, B&amp;O ne prendra en compte que les demandes envoyées à un environnement "
-"de production."
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
@@ -353,13 +352,13 @@ msgstr ""
 #: model:ir.model.fields.selection,name:sale_inventory_api.selection__bo_report__status__draft
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Draft"
-msgstr "Brouillon"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__date_end
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "End Date"
-msgstr "Date de fin"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__error_msg
@@ -369,25 +368,25 @@ msgstr "Date de fin"
 #: model:ir.model.fields.selection,name:sale_inventory_api.selection__bo_report__status__error
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Error"
-msgstr "Erreur"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_abstract__error_msg
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_quant__error_msg
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__error_msg
 msgid "Error Message"
-msgstr "Message d'erreur"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
 msgid "Erros"
-msgstr "Erreurs"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields.selection,name:sale_inventory_api.selection__bo_report__status__fail
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Fail"
-msgstr "Échec"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__message_follower_ids
@@ -446,7 +445,7 @@ msgstr ""
 #. module: sale_inventory_api
 #: model:ir.model,name:sale_inventory_api.model_stock_location
 msgid "Inventory Locations"
-msgstr "Emplacements de l'inventaire"
+msgstr "Voorraadlocaties"
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_quant__inventory_status
@@ -456,13 +455,13 @@ msgstr ""
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_sale_order_line__invoice_date
 msgid "Invoice Date"
-msgstr "Date de la facture"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_partner__is_b_and_o_supplier
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_users__is_b_and_o_supplier
 msgid "Is B&O Supplier"
-msgstr "Est le fournisseur de B&O"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__message_is_follower
@@ -517,13 +516,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_type__name
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #. module: sale_inventory_api
 #. odoo-python
 #: code:addons/sale_inventory_api/models/bo_report.py:0
 msgid "New"
-msgstr "Nouveau"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__activity_calendar_event_id
@@ -549,7 +548,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_inventory_api/models/bo_report.py:0
 msgid "No report type found with technical name %s."
-msgstr "Aucun type de rapport n'a été trouvé avec le nom technique %s."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__message_needaction_counter
@@ -575,17 +574,17 @@ msgstr ""
 #: model:ir.model.fields,help:sale_inventory_api.field_res_company__b_and_o_api_start_date
 #: model:ir.model.fields,help:sale_inventory_api.field_res_config_settings__b_and_o_api_start_date
 msgid "Odoo will send Sale data from this date"
-msgstr "Odoo enverra les données de vente à partir de cette date"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
 msgid "Odoo will send Sale data starting from this date."
-msgstr "Odoo enverra les données de vente à partir de cette date."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model,name:sale_inventory_api.model_pos_order_line
 msgid "Point of Sale Order Lines"
-msgstr "Lignes des commandes du point de vente"
+msgstr "Kassaorderregels"
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__pos_order_line_id
@@ -598,7 +597,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_quant__product_id
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__product_id
 msgid "Product"
-msgstr "Produit"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields.selection,name:sale_inventory_api.selection__res_company__b_and_o_api_environment__prod
@@ -610,12 +609,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_quant__quantity
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__quantity
 msgid "Quantity"
-msgstr "Quantité"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model,name:sale_inventory_api.model_stock_quant
 msgid "Quants"
-msgstr "Quantités"
+msgstr "Aantallen"
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
@@ -630,7 +629,7 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
 msgid "Reload"
-msgstr "Recharger"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__report_line_quant_ids
@@ -645,23 +644,23 @@ msgstr ""
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__report_type_id
 msgid "Report Type"
-msgstr "Type de rapport"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__report_type_technical_name
 msgid "Report Type Technical Name"
-msgstr "Type de rapport Nom technique"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.ui.menu,name:sale_inventory_api.b_and_o_api_menu_report_type
 msgid "Report Types"
-msgstr "Types de rapports"
+msgstr ""
 
 #. module: sale_inventory_api
 #. odoo-python
 #: code:addons/sale_inventory_api/models/bo_report.py:0
 msgid "Report type technical name unsupported %s."
-msgstr "Le nom technique du type de rapport n'est pas pris en charge %s."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.ui.menu,name:sale_inventory_api.b_and_o_api_menu_report
@@ -686,22 +685,22 @@ msgstr ""
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__order_id
 msgid "Sale Order"
-msgstr "Commande de vente"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__sale_line_id
 msgid "Sale Order Line"
-msgstr "Ligne de commande de vente"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model,name:sale_inventory_api.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de commande"
+msgstr "Verkooporderregel"
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Search B&O Report"
-msgstr "Recherche dans le rapport B&O"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
@@ -716,25 +715,25 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
 msgid "Send"
-msgstr "Envoyer"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_product_product__is_api_b_and_o_compliant
 #: model:ir.model.fields,field_description:sale_inventory_api.field_product_template__is_api_b_and_o_compliant
 msgid "Send To B&O API"
-msgstr "Envoyer à l'API B&O"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields.selection,name:sale_inventory_api.selection__bo_report__status__sent
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Sent"
-msgstr "Envoyé"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.actions.act_window,name:sale_inventory_api.action_b_and_o_api_config_settings
 #: model:ir.ui.menu,name:sale_inventory_api.b_and_o_api_config_settings_menu
 msgid "Settings"
-msgstr "Paramètres"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
@@ -750,20 +749,18 @@ msgid ""
 "Specify the number of days Odoo should wait before sending sales data.\n"
 "For example, if a sales order is dated as day X, Odoo will send the data on day X + time_delta."
 msgstr ""
-"Spécifiez le nombre de jours qu'Odoo doit attendre avant d'envoyer les données de vente.\n"
-"Par exemple, si une commande client est datée du jour X, Odoo enverra les données le jour X + time_delta."
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__date_start
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Start Date"
-msgstr "Date de début"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__status
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
 msgid "Status"
-msgstr "Statut"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,help:sale_inventory_api.field_bo_report__activity_state
@@ -782,12 +779,12 @@ msgstr ""
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_stock_warehouse__store_identifier
 msgid "Store Identifier"
-msgstr "Identifiant du magasin"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_type__technical_name
 msgid "Technical Name"
-msgstr "Nom technique"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields.selection,name:sale_inventory_api.selection__res_company__b_and_o_api_environment__test
@@ -797,7 +794,7 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_form
 msgid "Test Data Validity"
-msgstr "Tester la validité des données"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_config_settings__b_and_o_test_url
@@ -807,7 +804,7 @@ msgstr ""
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.res_config_settings_view_form
 msgid "Test URL used to send API REST requests"
-msgstr "URL de test utilisée pour envoyer des requêtes API REST"
+msgstr ""
 
 #. module: sale_inventory_api
 #. odoo-python
@@ -816,8 +813,6 @@ msgid ""
 "The SN must be string that consists of only digits.\n"
 "The length of the string must be exactly 8 characters."
 msgstr ""
-"Le SN doit être une chaîne composée uniquement de chiffres.\n"
-"La longueur de la chaîne doit être d'exactement 8 caractères."
 
 #. module: sale_inventory_api
 #. odoo-python
@@ -826,8 +821,6 @@ msgid ""
 "The product identifier must be string that consists of only digits.\n"
 "The length of the string must be between 1 and 10 characters (inclusive)."
 msgstr ""
-"L'identifiant du produit doit être une chaîne composée uniquement de chiffres.\n"
-"La longueur de la chaîne doit être comprise entre 1 et 10 caractères (inclus)."
 
 #. module: sale_inventory_api
 #. odoo-python
@@ -838,16 +831,12 @@ msgid ""
 "Must have at least one digit before the optional decimal point.\n"
 "May or may not include a fractional part after the decimal point."
 msgstr ""
-"La quantité doit être une chaîne de caractères.\n"
-"Elle peut comporter ou non un signe (+ ou -).\n"
-"Doit comporter au moins un chiffre avant la virgule facultative.\n"
-"Peut ou non inclure une partie fractionnaire après la virgule."
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_company__b_and_o_api_time_delta
 #: model:ir.model.fields,field_description:sale_inventory_api.field_res_config_settings__b_and_o_api_time_delta
 msgid "Time Delta (in days)"
-msgstr "Delta de temps (en jours)"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_view_search
@@ -858,7 +847,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_type_view_form
 #: model_terms:ir.ui.view,arch_db:sale_inventory_api.bo_report_type_view_list
 msgid "Type Of Report"
-msgstr "Type de rapport"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,help:sale_inventory_api.field_bo_report__activity_exception_decoration
@@ -870,7 +859,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_quant__uom_id
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__uom_id
 msgid "UOM"
-msgstr "UdM"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__url
@@ -900,7 +889,7 @@ msgstr ""
 #. module: sale_inventory_api
 #: model:res.groups,name:sale_inventory_api.b_and_o_group_user
 msgid "User"
-msgstr "Utilisateur"
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model,name:sale_inventory_api.model_stock_warehouse
@@ -908,7 +897,7 @@ msgstr "Utilisateur"
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_quant__warehouse_id
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__warehouse_id
 msgid "Warehouse"
-msgstr "Entrepôt"
+msgstr "Magazijn"
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report__website_message_ids
@@ -924,7 +913,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_inventory_api/models/bo_report_line_abstract.py:0
 msgid "You must defined a Store identifier on the warehouse %s."
-msgstr "Vous devez définir un identifiant de magasin pour l'entrepôt %s."
+msgstr ""
 
 #. module: sale_inventory_api
 #: model:ir.model.fields,field_description:sale_inventory_api.field_bo_report_line_sale__pos_order_id

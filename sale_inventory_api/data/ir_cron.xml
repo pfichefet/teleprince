@@ -8,7 +8,6 @@
             <field name="code">model.send_data_by_cron('Sell-Out Sales')</field>
             <field name='interval_number'>1</field>
             <field name='interval_type'>weeks</field>
-            <field name="numbercall">-1</field>
         </record>
 
         <record id="cron_send_api_data_quant" model="ir.cron">
@@ -18,7 +17,6 @@
             <field name="code">model.send_data_by_cron('Sell-Out Inventory')</field>
             <field name='interval_number'>1</field>
             <field name='interval_type'>weeks</field>
-            <field name="numbercall">-1</field>
         </record>
     </data>
 </odoo>

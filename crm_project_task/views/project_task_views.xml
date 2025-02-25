@@ -11,53 +11,17 @@
         </field>
     </record>
 
-    <record id="project_enterprise_task_view_form" model="ir.ui.view">
-        <field name="name">project.enterprise.task.view.form.inherit</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project_enterprise.project_task_view_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//label[@for='planned_date_begin']" position="attributes">
-                <attribute name="attrs">
-                    {}
-                </attribute>
-            </xpath>
-            <xpath expr="//label[@for='planned_date_begin']/following::div[hasclass('w-100')]" position="attributes">
-                <attribute name="attrs">
-                    {}
-                </attribute>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="project_task_kanban_fsm_stage" model="ir.ui.view">
-        <field name="name">project.task.kanban.fsm.stage</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="industry_fsm.project_task_action_fsm_no_quick_create"/>
-        <field name="arch" type="xml">
-            <field name="color" position="after">
-                <field name="is_fold"/>
-            </field>
-            <xpath expr="//div[hasclass('o_kanban_record_body')]/field[@name='tag_ids']" position="after">
-                <p>
-                    <field name="stage_id" widget="badge" decoration-success="is_fold"/>
-                </p>
-            </xpath>
-        </field>
-    </record>
-
     <record id="project_my_task_kanban_stage" model="ir.ui.view">
         <field name="name">project.my.task.kanban.stage</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_kanban_inherit_my_task"/>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
         <field name="arch" type="xml">
-            <field name="color" position="after">
+            <field name="state" position="after">
                 <field name="is_fold"/>
             </field>
-            <xpath expr="//div[hasclass('o_kanban_record_body')]/field[@name='tag_ids']" position="after">
-                <p>
-                    <field name="stage_id" widget="badge" decoration-success="is_fold"/>
-                </p>
-            </xpath>
+            <field name="tag_ids" position="after">
+                <field name="stage_id" widget="badge" decoration-success="is_fold"/>
+            </field>
         </field>
     </record>
 </odoo>

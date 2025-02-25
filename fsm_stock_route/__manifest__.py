@@ -11,7 +11,7 @@ FSM Stock Route
 In the settings of the project you can sepcify a logistic route to be used..
     """,
     'category': 'Services/Field Service',
-    'depends': ['industry_fsm_sale'],
+    'depends': ['stock', 'industry_fsm_sale'],
     'external_dependencies': {
     },
     'data': [

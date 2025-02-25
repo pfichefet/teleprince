@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="project_task_kanban_fsm_date" model="ir.ui.view">
-        <field name="name">project.task.kanban.fsm.date</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="industry_fsm.project_task_action_fsm_no_quick_create"/>
-        <field name="arch" type="xml">
-            <field name="planned_date_begin" position="after">
-                <i class="fa fa-long-arrow-right mx-2 oe_read_only" aria-label="Arrow icon" title="Arrow" attrs="{'invisible': [('planned_date_begin', '=', False), ('planned_date_end', '=', False)]}"/>
-            </field>
-            <xpath expr="//field[@name='planned_date_end']" position="attributes">
-                <attribute name="invisible">0</attribute>
-            </xpath>
-        </field>
-    </record>
-
     <record id="project_task_view_form_sale_line" model="ir.ui.view">
         <field name="name">project.task.form.sale.line</field>
         <field name="model">project.task</field>
@@ -42,8 +28,8 @@
         <field name="inherit_id" ref="project.quick_create_task_form"/>
         <field name="arch" type="xml">
             <field name="user_ids" position="after">
-                <field name="planned_date_begin" widget="daterange" options='{"related_end_date": "planned_date_end"}'/>
-                <field name="planned_date_end" widget="daterange" options='{"related_start_date": "planned_date_begin"}'/>
+                <field name="planned_date_begin" widget="daterange" options='{"related_end_date": "date_deadline"}'/>
+                <field name="date_deadline" widget="daterange" options='{"related_start_date": "planned_date_begin"}'/>
             </field>
         </field>
     </record>

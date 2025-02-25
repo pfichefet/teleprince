@@ -1,16 +1,26 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Add Payment Method On the Invoice",
+    'version': '1.0.0',
+    'summary': """ For invoices generated from the point of sale display the payment method. """,
+    'sequence': 10,
+    'author': 'The Fish Consulting',
+    'website': 'https://thefishconsulting.be',
+    'description': """
 
-    'summary': """
-   """,
-    'category': 'invoice',
-    'version': '16.0.1.0.0',
-
+    """,
+    'category': 'Accounting/Accounting',
     'depends': ['account'],
-
+    'external_dependencies': {
+    },
     'data': [
-        'views/report_invoice.xml'
+        # Views
+        'views/report_invoice.xml',
     ],
+    'price': 0.0,
+    'currency': 'EUR',
+    'support': 'contact@thefishconsulting.be',
     'license': 'LGPL-3',
+    'installable': True,
+    'application': True,
+    'auto_install': False,
 }

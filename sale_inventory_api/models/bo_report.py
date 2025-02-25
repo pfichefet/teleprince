@@ -14,7 +14,7 @@ class BOReport(models.Model):
     _description = "B&O report"
     _order = "date_start desc, id"
 
-    name = fields.Char(string='Name', required=True, readonly=True, default=_('New'))
+    name = fields.Char(string='Name', required=True, readonly=True, default=lambda self: _('New'))
     date_start = fields.Date(string='Start Date', required=True)
     date_end = fields.Date(string='End Date', required=True)
     report_type_id = fields.Many2one("bo.report.type", string='Report Type', required=True, ondelete="cascade")
