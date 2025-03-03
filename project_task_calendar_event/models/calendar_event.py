@@ -7,6 +7,7 @@ class CalendarEvent(models.Model):
     task_ids = fields.One2many('project.task', 'calendar_event_id', string="Tasks")
     task_id = fields.Many2one('project.task', string="Task", compute='_compute_task_id')
     project_id = fields.Many2one('project.project', string="Project")
+    task_partner_id = fields.Many2one('res.partner', string="Customer")
 
     @api.depends('privacy', 'user_id', 'project_id')
     def _compute_display_name(self):
@@ -36,9 +37,10 @@ class CalendarEvent(models.Model):
         values = {
             'name': f"{self.name}",
             'description': self.description,
+            'partner_id': self.task_partner_id.id if self.task_partner_id else False,
             'project_id': self.project_id.id,
             'planned_date_begin': self.start,
-            'planned_date_end': self.stop,
+            'date_deadline': self.stop,
             'user_ids': [Command.set(self.partner_ids.mapped('user_ids.id'))],
             'calendar_event_id': self.id,
         }
@@ -71,7 +73,7 @@ class CalendarEvent(models.Model):
         """
         event_without_tasks = self.filtered(lambda e: not e.task_ids)
         res = super(CalendarEvent, self.with_context(task_event=True)).write(vals)
-        if any([field in vals for field in ['name', 'project_id', 'description', 'start', 'stop', 'partner_ids']]) and not self.env.context.get('task_event', False):
+        if any([field in vals for field in ['name', 'project_id', 'description', 'start', 'stop', 'partner_ids', 'task_partner_id']]) and not self.env.context.get('task_event', False):
             for event in self:
                 if event.task_ids:
                     values = event._prepare_project_task_values()

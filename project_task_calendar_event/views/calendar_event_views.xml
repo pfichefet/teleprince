@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <odoo>
+    <record id="view_calendar_event_form_quick_create" model="ir.ui.view">
+        <field name="name">view.calendar.event.calendar.quick.create.inherit.project.task</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form_quick_create"/>
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="after">
+                <field name="project_id"/>
+                <field name="task_partner_id"/>
+            </field>
+        </field>
+    </record>
+
     <record id="calendar_event_calendar_view_inherit_tasks" model="ir.ui.view">
         <field name="name">calendar.event.view.calendar.inherit.tasks</field>
         <field name="model">calendar.event</field>
@@ -8,6 +20,7 @@
             <xpath expr="//field[@name='description']" position="after">
                 <field name="project_id"/>
                 <field name="task_id"/>
+                <field name="task_partner_id"/>
             </xpath>
         </field>
     </record>
@@ -20,6 +33,7 @@
             <xpath expr="//field[@name='user_id']" position="before">
                 <field name="project_id"/>
                 <field name="task_id"/>
+                <field name="task_partner_id"/>
             </xpath>
         </field>
     </record>
