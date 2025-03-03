@@ -1,7 +1,3 @@
-[submodule "twikey/twikey-odoo"]
-	path = twikey/twikey-odoo
-	url = git@github.com:twikey/twikey-odoo.git
-	branch = 16.0
 [submodule "thefishconsulting/tfc_purchase"]
 	path = thefishconsulting/tfc_purchase
 	url = git@bitbucket.org:thefishconsulting/tfc_purchase.git
