@@ -15,6 +15,7 @@ class ProductProduct(models.Model):
 
         Sale order line created use the route specified in the project settings of the task.
         """
+        self = self.with_context(industry_fsm_stock_set_quantity=True)
         task = self._get_contextual_fsm_task()
         if task:
             SaleOrderLine_sudo = self.env['sale.order.line'].sudo()
@@ -22,22 +23,23 @@ class ProductProduct(models.Model):
                 ('order_id', '=', task.sale_order_id.id),
                 ('product_id', 'in', self.ids),
                 ('task_id', '=', task.id)],
-                ['product_id', 'sequence', 'ids:array_agg(id)'],
                 ['product_id', 'sequence'],
-                lazy=False)
+                ['id:array_agg'])
             sale_lines_per_product = defaultdict(lambda: self.env['sale.order.line'])
-            for sol in sale_lines_read_group:
-                sale_lines_per_product[sol['product_id'][0]] |= SaleOrderLine_sudo.browse(sol['ids'])
+            for product, __, ids in sale_lines_read_group:
+                sale_lines_per_product[product.id] |= SaleOrderLine_sudo.browse(ids)
             for product in self:
                 sale_lines = sale_lines_per_product.get(product.id, self.env['sale.order.line'])
-                all_editable_lines = sale_lines.filtered(lambda l: l.qty_delivered == 0 or l.qty_delivered_method == 'manual' or l.state != 'done')
+                all_editable_lines = sale_lines.filtered(lambda l: l.qty_delivered == 0 or l.qty_delivered_method == 'manual' or not l.order_id.locked)
                 diff_qty = product.fsm_quantity - sum(sale_lines.mapped('product_uom_qty'))
                 if all_editable_lines:  # existing line: change ordered qty (and delivered, if delivered method)
                     if diff_qty > 0:
                         vals = {
                             'product_uom_qty': all_editable_lines[0].product_uom_qty + diff_qty,
                         }
-                        if all_editable_lines[0].qty_delivered_method == 'manual':
+                        if task.under_warranty:
+                            vals['price_unit'] = 0
+                        if product.service_type == 'manual':
                             vals['qty_delivered'] = all_editable_lines[0].product_uom_qty + diff_qty
                         all_editable_lines[0].with_context(fsm_no_message_post=True).write(vals)
                         continue
@@ -45,12 +47,11 @@ class ProductProduct(models.Model):
                     for line in all_editable_lines:
                         new_line_qty = max(0, line.product_uom_qty + diff_qty)
                         diff_qty += line.product_uom_qty - new_line_qty
-                        vals = {
-                            'product_uom_qty': new_line_qty
-                        }
-                        if line.qty_delivered_method == 'manual':
-                            vals['qty_delivered'] = new_line_qty
-                        line.with_context(fsm_no_message_post=True).write(vals)
+                        if product.service_type == 'manual':
+                            line.with_context(fsm_no_message_post=True).qty_delivered = new_line_qty
+                        line.with_context(fsm_no_message_post=True).product_uom_qty = new_line_qty
+                        if task.under_warranty:
+                            line.price_unit = 0
                         if diff_qty == 0:
                             break
                 elif diff_qty > 0:  # create new SOL
@@ -67,11 +68,11 @@ class ProductProduct(models.Model):
                         'route_id': warehouse.fsm_route_id.id if warehouse.fsm_route_id else False,
                         # Custom code End
                     }
+                    if task.under_warranty:
+                        vals['price_unit'] = 0
                     if product.service_type == 'manual':
                         vals['qty_delivered'] = diff_qty
+                    if task.sale_order_id.order_line:
+                        vals['sequence'] = max(task.sale_order_id.order_line.mapped('sequence')) + 1
 
-                    sol = SaleOrderLine_sudo.create(vals)
-                    if task.sale_order_id.pricelist_id.discount_policy != 'without_discount':
-                        sol.discount = 0.0
-                    if not sol.qty_delivered_method == 'manual':
-                        sol.qty_delivered = 0
+                    sol_sudo = SaleOrderLine_sudo.create(vals)

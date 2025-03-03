@@ -1,3 +1,4 @@
+import json
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -21,6 +22,7 @@ class CrmLead(models.Model):
             'domain': [
                 ('id', 'in', self.task_ids.ids),
             ],
+            'context': {'default_opportunity_id': self.id, 'is_pre_visit_task': True},
         })
         return action
 
