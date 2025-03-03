@@ -2,3 +2,7 @@
 	path = thefishconsulting/tfc_purchase
 	url = git@bitbucket.org:thefishconsulting/tfc_purchase.git
 	branch = 16.0
+[submodule "twikey-pfi"]
+	path = twikey-pfi
+	url = git@github.com:pfichefet/twikey-odoo.git
+	branch = 18.0_develop
