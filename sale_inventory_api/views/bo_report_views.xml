@@ -86,7 +86,7 @@
                                 </list>
                             </field>
                         </page>
-                        <page string="Erros" name="send_error" invisible="status != 'fail'">
+                        <page string="Errors" name="send_error" invisible="status != 'fail'">
                             <group name="send_error_group">
                                 <field name="url"/>
                                 <field name="error_msg"/>
