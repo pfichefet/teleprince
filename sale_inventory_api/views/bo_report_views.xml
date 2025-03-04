@@ -27,7 +27,7 @@
                 <header>
                     <button name="generate_data" string="Reload" type="object" invisible="status in ['sent', 'deleted']"/>
                     <button name="check_data_validity" string="Test Data Validity" type="object" invisible="status in ['sent', 'deleted']"/>
-                    <button name="send_data" string="Send" type="object" invisible="status !=' correct' or not upload_reference_guid"/>
+                    <button name="send_data" string="Send" type="object" invisible="status != 'correct' or upload_reference_guid"/>
                     <button name="delete_data" string="Delete" type="object" invisible="status not in ['sent', 'fail'] or not upload_reference_guid"/>
                     <button name="reset_to_draft" string="Reset" type="object" invisible="status != 'deleted'"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,correct,sent"/>
@@ -54,7 +54,7 @@
                         <page string="Sell-Out Sales" name="line_sale" invisible="report_type_technical_name != 'Sell-Out Sales'" readonly="status == 'sent'">
                             <field name="report_line_sale_ids">
                                 <list string="Sell-Out Sales" decoration-warning="error" editable="bottom" create="0">
-                                    <field name="error" invisible="1"/>
+                                    <field name="error" column_invisible="1"/>
                                     <field name="warehouse_id" optional="hide"/>
                                     <field name="date"/>
                                     <field name="order_id" optional="hide"/>
@@ -71,8 +71,8 @@
                         <page string="Sell-Out Inventory" name="line_inventory" invisible="report_type_technical_name != 'Sell-Out Inventory'" readonly="status == 'sent'">
                             <field name="report_line_quant_ids">
                                 <list string="Sell-Out Inventory" decoration-warning="error" editable="bottom" create="0">
-                                    <field name="error" invisible="1"/>
-                                    <field name="quant_lot_id" invisible="1"/>
+                                    <field name="error" column_invisible="1"/>
+                                    <field name="quant_lot_id" column_invisible="1"/>
                                     <field name="warehouse_id" optional="hide"/>
                                     <field name="date"/>
                                     <field name="quant_id" optional="hide"/>
@@ -95,11 +95,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread"/>
-                </div>
+                <chatter/>
             </form>
         </field>
     </record>

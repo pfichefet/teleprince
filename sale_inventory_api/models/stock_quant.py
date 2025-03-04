@@ -22,11 +22,10 @@ class StockQuant(models.Model):
             "company_id": self.company_id.id,
         }
         inventory_status = 'Sellable'
-        if self:
-            if self.location_id.is_display_location:
-                inventory_status = 'Display'
-            elif float_is_zero(self.reserved_quantity, precision_rounding=self.product_uom_id.rounding):
-                inventory_status = 'Reserved'
+        if self.location_id.is_display_location:
+            inventory_status = 'Display'
+        elif not float_is_zero(self.reserved_quantity, precision_rounding=self.product_uom_id.rounding):
+            inventory_status = 'Reserved'
         if inventory_status == 'Reserved':
             values.update({
                 "inventory_status": inventory_status,

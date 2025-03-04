@@ -27,11 +27,7 @@ class PurchaseOrder(models.Model):
             final_operator = 'not in' if operator == '=' else 'in'
         else:
             # Handle other filters
-            list_partners_name = self.env['res.partner'].search_read(
-                [('name', operator, value)], ['name']
-            )
-            partner_ids = [partner_name['id'] for partner_name in list_partners_name]
-            sale_domain = [('partner_id', 'in', partner_ids)]
+            sale_domain = [('partner_id', operator, value)]
             final_operator = '='
         sale_orders = self.env['sale.order'].search(sale_domain)
         purchase_order_ids = sale_orders._get_purchase_orders().ids

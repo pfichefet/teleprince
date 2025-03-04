@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* send_mail_on_reconciliation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-04 10:31+0000\n"
+"PO-Revision-Date: 2025-03-04 11:33+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: send_mail_on_reconciliation
+#: model:mail.template,body_html:send_mail_on_reconciliation.email_template_invoice_paid
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"box-sizing:border-box;margin: 0px; padding: "
+"0px; font-size: 13px;\">Dear customer,&nbsp;</p><p style=\"box-sizing:"
+"border-box;margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"<br><br>  \n"
+"We would like to thank you for your payment&nbsp;for <span style=\"font-"
+"weight:bold;\" t-out=\"object.name or ''\"></span>,\n"
+"                        Please find your paid invoice in the attached."
+"<br>We express our gratitude for the trust you place in us.<br><br>Best "
+"regards,&nbsp;<br><br>    Bang&amp;Olufsen Brussels \n"
+"<br> \n"
+"Bang&amp;Olufsen Liège\n"
+"<br> \n"
+"Bang&amp;Olufsen Mechelen\n"
+"<br> \n"
+"SIT Consulting &amp; Finance BV/SRL </p></div>"
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"box-sizing:border-box;margin: 0px; padding: "
+"0px; font-size: 13px;\">Beste klant,&nbsp;</p><p style=\"box-sizing:border-"
+"box;margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"<br><br>        \n"
+"Wij danken u voor uw betaling&nbsp;voor <span style=\"font-weight:bold;\" t-"
+"out=\"object.name or ''\"></span>,\n"
+"                       <br>Gelieve uw betaalde factuur in de bijlage te "
+"vinden.<br>Wij waarderen het vertrouwen dat u in ons stelt. <br><br>Met "
+"vriendelijk groeten,&nbsp;<br><br>     Bang&amp;Olufsen Brussels \n"
+"<br> \n"
+"Bang&amp;Olufsen Liège\n"
+"<br> \n"
+"Bang&amp;Olufsen Mechelen\n"
+"<br><br> \n"
+"SIT Consulting & Finance BV/SRL "
+
+#. module: send_mail_on_reconciliation
+#: model_terms:ir.ui.view,arch_db:send_mail_on_reconciliation.res_config_settings_view_form
+msgid ""
+"As soon as a customer invoice is marked as paid, an email is sent to inform "
+"the customer that their payment has been "
+"received.                             However, emails are not sent for "
+"invoices generated through the point-of-sale application."
+msgstr ""
+"Zodra een klantfactuur is gemarkeerd als betaald, wordt er een e-mail "
+"verzonden om de klant te informeren dat de betaling is "
+"ontvangen.                             Er worden echter geen e-mails "
+"verzonden voor facturen die via de kassatoepassing zijn gegenereerd."
+
+#. module: send_mail_on_reconciliation
+#: model:ir.model,name:send_mail_on_reconciliation.model_res_company
+msgid "Companies"
+msgstr "Bedrijven"
+
+#. module: send_mail_on_reconciliation
+#: model:ir.model,name:send_mail_on_reconciliation.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configuratie instellingen"
+
+#. module: send_mail_on_reconciliation
+#: model_terms:ir.ui.view,arch_db:send_mail_on_reconciliation.res_config_settings_view_form
+msgid "Email on customer invoice reconciliation"
+msgstr "E-mail over factuurafstemming met klanten"
+
+#. module: send_mail_on_reconciliation
+#: model:mail.template,name:send_mail_on_reconciliation.email_template_invoice_paid
+msgid "Invoice: Payment Confirmation"
+msgstr "Factuur: Betalingsbevestiging"
+
+#. module: send_mail_on_reconciliation
+#: model:ir.model,name:send_mail_on_reconciliation.model_account_move
+msgid "Journal Entry"
+msgstr "Boeking"
+
+#. module: send_mail_on_reconciliation
+#: model:ir.model.fields,field_description:send_mail_on_reconciliation.field_res_company__invoice_reconciliation_mail_template_id
+#: model:ir.model.fields,field_description:send_mail_on_reconciliation.field_res_config_settings__invoice_reconciliation_mail_template_id
+msgid "Mail template used for invoice reconciliation"
+msgstr "Mailsjabloon gebruikt voor factuurafstemming"
+
+#. module: send_mail_on_reconciliation
+#: model:mail.template,subject:send_mail_on_reconciliation.email_template_invoice_paid
+msgid ""
+"Payment received for Invoice ({{ object.name or 'n/a' }}) {{ object."
+"company_id.name }}"
+msgstr ""
+"Betaling ontvangen voor factuur ({{ object.name or 'n/a' }}) {{ object."
+"company_id.name }}"
+
+#. module: send_mail_on_reconciliation
+#: model:ir.model.fields,field_description:send_mail_on_reconciliation.field_account_bank_statement_line__send_mail_invoice_reconciliation
+#: model:ir.model.fields,field_description:send_mail_on_reconciliation.field_account_move__send_mail_invoice_reconciliation
+#: model:ir.model.fields,field_description:send_mail_on_reconciliation.field_res_company__send_mail_invoice_reconciliation
+#: model:ir.model.fields,field_description:send_mail_on_reconciliation.field_res_config_settings__send_mail_invoice_reconciliation
+msgid "Send mail to the customer when his invoice is reconciled"
+msgstr "Stuur een e-mail naar de klant wanneer zijn factuur is aangepast"

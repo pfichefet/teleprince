@@ -112,8 +112,8 @@ class BOReport(models.Model):
             ('company_id', '=', self.company_id.id)
         ])
         for pos_line in pos_order_lines:
-            values = pos_line.prepare_bo_report_line(self)
-            list_values.append(Command.create(values))
+            pos_line_list_values = pos_line.prepare_bo_report_line(self)
+            list_values.extend(Command.create(values) for values in pos_line_list_values)
         self.sudo().write({"report_line_sale_ids": list_values})
 
     def generate_inventory_data(self):

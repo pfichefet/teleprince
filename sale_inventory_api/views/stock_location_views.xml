@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="stock.view_location_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='replenish_location']" position='after'>
-                <field name="is_display_location" groups="base.group_no_one" invisible="usage != 'internal'"/>
+                <field name="is_display_location" groups="sale_inventory_api.b_and_o_group_manager" invisible="usage != 'internal'"/>
             </xpath>
         </field>
     </record>
