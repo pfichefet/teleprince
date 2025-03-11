@@ -6,7 +6,7 @@
                 <table class="table table-sm o_main_table table-borderless mt-4">
                     <tbody class="sale_tbody">
                         <tr>
-                            <td name="td_finaning">
+                            <td name="td_financing">
                                 Monthly Financing Payment
                             </td>
                             <td name="td_monthly_financing_payment" class="text-end">

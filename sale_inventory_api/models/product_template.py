@@ -4,11 +4,15 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    is_api_b_and_o_compliant = fields.Boolean(string="Send To B&O API",
-                                              compute="_compute_is_api_b_and_o_compliant",
-                                              readonly=False, store=True, precompute=True)
+    is_api_b_and_o_compliant = fields.Boolean(
+        string="Send To B&O API",
+        compute="_compute_is_api_b_and_o_compliant",
+        readonly=False,
+        store=True,
+        precompute=True,
+    )
 
-    @api.depends('seller_ids', 'seller_ids.partner_id.is_b_and_o_supplier')
+    @api.depends("seller_ids", "seller_ids.partner_id.is_b_and_o_supplier")
     def _compute_is_api_b_and_o_compliant(self):
         """
         A product is compliant with the B&O API by default if its supplier is B&O.

@@ -18,7 +18,9 @@ class PostSaleInventory:
                 exceeding the 600 per 5 minutes limit.
         """
         if not company.b_and_o_api_active:
-            raise UserError(_("B&O API is not actviated for this company %s.") % company.name)
+            raise UserError(
+                _("B&O API is not actviated for this company %s.") % company.name
+            )
         if not company.b_and_o_api_key:
             raise UserError(_("B&O API key is missing for company %s.") % company.name)
         self.key = company.b_and_o_api_key
@@ -26,11 +28,11 @@ class PostSaleInventory:
         self.time_between_requests = time_between_requests
         self.last_request_timestamp = None
 
-
     def api_send_data(self, body=False, method_name="POST"):
         """
         Posting data
         :param body: Data to send
+        :param method_name: The type of http method: "POST" or "DELETE"
         :return: http response
         """
         headers = {
