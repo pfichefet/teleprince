@@ -1,6 +1,6 @@
 {
     "name": "Sale Monthly Financing Payment",
-    "version": "1.0.0",
+    "version": "18.0.0.0",
     "summary": "Add a field to indicate the monthly payment of the financing.",
     "sequence": 10,
     "author": "The Fish Consulting",
