@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="mail_notification_layout" name="Mail: mail notification layout template" inherit_id="mail.mail_notification_layout">
+        <xpath expr="//div[@t-if='show_footer'][2]" position="replace">
+            <div t-if="show_footer" style="color: #555555; font-size:11px;">
+                Powered by Bang &amp; Olufsen
+                <span id="mail_unfollow">
+                    | <a href="/mail/unfollow" style="text-decoration:none; color:#555555;">Unfollow</a>
+                </span>
+            </div>
+        </xpath>
+    </template>
+</odoo>
