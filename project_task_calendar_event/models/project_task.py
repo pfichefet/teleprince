@@ -1,6 +1,8 @@
+import odoo.models
 from odoo import api, Command, fields, models
 
-
+# Modify the display format
+odoo.models.READ_GROUP_DISPLAY_FORMAT["day"] = "EEE, dd MMM yyyy"
 PROJECT_TASK_READABLE_FIELDS = {
     "calendar_event_id",
 }
