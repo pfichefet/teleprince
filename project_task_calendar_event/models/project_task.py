@@ -21,6 +21,7 @@ class ProjectTask(models.Model):
         """
         Prepare a dictionary of values to create a calendar event
         """
+        model = self.env["ir.model"].search([("model", "=", self._name)], limit=1)
         self.ensure_one()
         values = {
             "name": self.name,
@@ -30,6 +31,9 @@ class ProjectTask(models.Model):
             "start": self.planned_date_begin,
             "stop": self.date_deadline,
             "partner_ids": [Command.set(self.user_ids.mapped("partner_id.id"))],
+            "res_model": self._name,
+            "res_model_id": model.id if model else False,
+            "res_id": self.id,
         }
         return values
 
