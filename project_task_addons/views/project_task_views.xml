@@ -34,4 +34,15 @@
         </field>
     </record>
 
+    <record id="fsm_task_form" model="ir.ui.view">
+        <field name="name">project.fsm.task.form.date</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="industry_fsm.view_task_form2_inherit"/>
+        <field name="arch" type="xml">
+            <div name="partner_phone" position="after">
+                <field name="delivery_partner_id" context="{'show_address': 1, 'show_address_if_fsm': 1, 'res_partner_search_mode': 'customer'}" invisible="not is_fsm"/>
+            </div>
+        </field>
+    </record>
+
 </odoo>

@@ -11,6 +11,7 @@ Project Task Addons
 - Add start date and end date on kanban view.
 - Allow to add date from the quick task create.
 - Allow to link a sale order line from a different partner on a task.
+- Allow to assign a secondary partner on a field service task.
     """,
     "category": "Hidden",
     "depends": ["industry_fsm_sale"],

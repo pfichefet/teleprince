@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_purchase_addons
+# 	* project_task_addons
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 11:09+0000\n"
-"PO-Revision-Date: 2025-02-04 12:09+0100\n"
+"POT-Creation-Date: 2025-06-02 14:42+0000\n"
+"PO-Revision-Date: 2025-06-02 16:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_BE\n"
@@ -15,19 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
-#. module: sale_purchase_addons
-#: model:ir.model.fields,field_description:sale_purchase_addons.field_purchase_order__sale_partner_id
-msgid "Customer"
-msgstr "Client"
+#. module: project_task_addons
+#: model:ir.model.fields,field_description:project_task_addons.field_project_task__delivery_partner_id
+msgid "Delivery Partner"
+msgstr "Adresse de livraison"
 
-#. module: sale_purchase_addons
-#: model:ir.model.fields,help:sale_purchase_addons.field_purchase_order__sale_partner_id
-msgid "Customer of the main sale order"
-msgstr "Client de la commande de vente principale"
+#. module: project_task_addons
+#: model:ir.model.fields,field_description:project_task_addons.field_project_task__project_partner_id
+msgid "Project Partner"
+msgstr "Contact lié au projet"
 
-#. module: sale_purchase_addons
-#: model:ir.model,name:sale_purchase_addons.model_purchase_order
-msgid "Purchase Order"
-msgstr "Commande fournisseur"
+#. module: project_task_addons
+#: model:ir.model,name:project_task_addons.model_project_task
+msgid "Task"
+msgstr "Tâche"
