@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <template id="worksheet_custom_page_no_material" inherit_id="industry_fsm_sale.worksheet_custom_page">
+            <xpath expr="//t[@t-if='doc.allow_billable and doc.sale_order_id and not doc.under_warranty and not doc._has_no_billable_products()']" position="replace"/>
+        </template>
+
         <template id="worksheet_custom_page_no_ts" inherit_id="industry_fsm.worksheet_custom_page" primary="True">
             <xpath expr="//div[@name='worksheet_task_timesheet']" position="replace"/>
         </template>
