@@ -11,7 +11,7 @@ Task Report No Timesheets Addons
 Create a new task report without the TS details.
     """,
     "category": "Hidden",
-    "depends": ["industry_fsm_report"],
+    "depends": ["industry_fsm_sale","industry_fsm_report"],
     "external_dependencies": {},
     "data": [
         # Reports
