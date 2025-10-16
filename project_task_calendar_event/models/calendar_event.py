@@ -9,6 +9,14 @@ class CalendarEvent(models.Model):
     project_id = fields.Many2one("project.project", string="Project")
     task_partner_id = fields.Many2one("res.partner", string="Customer")
 
+    @api.depends('partner_ids')
+    @api.depends_context('uid')
+    def _compute_user_can_edit(self):
+        # Overwrite the standard method.
+        # Let anyone modify any event.
+        for event in self:
+            event.user_can_edit = True
+
     @api.depends("privacy", "user_id", "project_id")
     def _compute_display_name(self):
         """
