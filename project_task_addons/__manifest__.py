@@ -12,6 +12,7 @@ Project Task Addons
 - Allow to add date from the quick task create.
 - Allow to link a sale order line from a different partner on a task.
 - Allow to assign a secondary partner on a field service task.
+- Filter projects in FSM task creation based on a stage boolean field.
     """,
     "category": "Hidden",
     "depends": ["industry_fsm_sale"],
@@ -19,6 +20,8 @@ Project Task Addons
     "data": [
         # Views
         "views/project_task_views.xml",
+        "views/project_project_views.xml",
+        "views/project_project_stage_views.xml",
     ],
     "price": 0.0,
     "currency": "EUR",

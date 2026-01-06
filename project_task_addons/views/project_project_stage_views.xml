@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_project_stage_view_tree" model="ir.ui.view">
+        <field name="name">project.project.stage.view.list</field>
+        <field name="model">project.project.stage</field>
+        <field name="inherit_id" ref="project.project_project_stage_view_tree" />
+        <field name="arch" type="xml">
+            <field name="mail_template_id" position="after">
+                <field name="display_project_fsm_app"/> 
+            </field>
+        </field>
+    </record>
+
+    <record id="project_project_stage_view_form_quick_create" model="ir.ui.view">
+        <field name="name">project.project.stage.view.form.quick.create</field>
+        <field name="model">project.project.stage</field>
+        <field name="inherit_id" ref="project.project_project_stage_view_form_quick_create" />
+        <field name="arch" type="xml">
+            <field name="mail_template_id" position="after">
+                <field name="display_project_fsm_app"/> 
+            </field>
+        </field>
+    </record>
+
+    <record id="project_project_stage_view_form" model="ir.ui.view">
+        <field name="name">project.project.stage.view.form</field>
+        <field name="model">project.project.stage</field>
+        <field name="inherit_id" ref="project.project_project_stage_view_form" />
+        <field name="arch" type="xml">
+            <field name="mail_template_id" position="after">
+                <field name="display_project_fsm_app"/> 
+            </field>
+        </field>
+    </record>
+</odoo>
