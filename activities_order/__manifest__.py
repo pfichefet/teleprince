@@ -1,22 +1,21 @@
 {
-    "name": "Remove Powered By Odoo",
+    "name": "Activities Order",
     "version": "18.0.1.0.0",
-    "summary": "Replace the 'Powered by Odoo' footer of the notification emails.",
+    "summary": "Order the records of the activity views by deadline descending.",
     "sequence": 10,
     "author": "The Fish Consulting",
     "website": "https://thefishconsulting.be",
     "description": """
-Remove Powered By Odoo
-======================
-Replace the 'Powered by Odoo' footer of the notification emails by 'Powered by Bang & Olufsen'.
+Activities Order
+================
+In the activity views, records are displayed by deadline descending
+(latest deadline first) instead of ascending.
+Records having only completed activities are still displayed at the end.
     """,
     "category": "Productivity/Discuss",
     "depends": ["mail"],
     "external_dependencies": {},
-    "data": [
-        # Views
-        "views/mail_templates_email_layouts.xml",
-    ],
+    "data": [],
     "price": 0.0,
     "currency": "EUR",
     "support": "contact@thefishconsulting.be",
